@@ -57,31 +57,33 @@
 			
 				<li><a href="/">程式筆記</a></li>
 	        
+				<li><a href="/business">商業思維</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
     			
-    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			<a q-on="click: openSlider(e, 'innerArchive')" target="_self" href="javascript:void(0)">所有文章</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友站</a>
+    			<a q-on="click: openSlider(e, 'friends')" target="_self" href="javascript:void(0)">好友們</a>
     			
             
     			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">關於我</a>
+    			<a q-on="click: openSlider(e, 'aboutme')" target="_self" href="javascript:void(0)">關於我</a>
     			
             
 		</nav>
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/cailiwu" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="mail" target="_blank" href="/dy5025115@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100000270248288" title="facebook"><i class="icon-facebook"></i></a>
 		        
 			</div>
 		</nav>
@@ -111,16 +113,18 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/cailiwu" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="mail" target="_blank" href="/dy5025115@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="facebook" target="_blank" href="https://www.facebook.com/profile.php?id=100000270248288" title="facebook"><i class="icon-facebook"></i></a>
 			        
 				</div>
 			</nav>
@@ -129,7 +133,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">程式筆記</a></li>
+					<li style="width: 50%"><a href="/">程式筆記</a></li>
+		        
+					<li style="width: 50%"><a href="/business">商業思維</a></li>
 		        
 				</ul>
 			</nav>
@@ -166,9 +172,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="tags-ReactJS-modern-env"><a href="#tags-ReactJS-modern-env" class="headerlink" title="tags: ReactJS modern env"></a>tags: <code>ReactJS</code> <code>modern</code> <code>env</code></h6><p>由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。</p>
-        
-          <a class="article-more-a" href="/2020/06/11/react_1/#more">顯示更多 >></a>
+        <p>由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。</p>
         
       
 
@@ -177,8 +181,31 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">modern</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">environment</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/11/react_1/">顯示更多 >></a>
+        </p>
       
 
       
@@ -275,7 +302,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
       
         
       
-      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友站</a></li>
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">好友們</a></li>
       
         
       
@@ -298,6 +325,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">ReactJS</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">modern</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">environment</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
@@ -348,27 +387,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
         <ul class="search-ul">
           
             <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+              <a href="https://decadehew.github.io/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>平凡前端(DecadeHew)</a>
             </li>
           
         </ul>
