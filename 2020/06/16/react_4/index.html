@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://cailiwu.github.io">
-  <title>Learning Corner | CaiLi</title>
+  <title>React components lifecycle(2) | Learning Corner | CaiLi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Learning Corner | CaiLi">
-<meta property="og:url" content="https://cailiwu.github.io/index.html">
+  <meta name="description" content="每一個component都有多個生命週期，可以透過覆寫，在特定的時期執行程式。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React components lifecycle(2)">
+<meta property="og:url" content="https://cailiwu.github.io/2020/06/16/react_4/index.html">
 <meta property="og:site_name" content="Learning Corner | CaiLi">
+<meta property="og:description" content="每一個component都有多個生命週期，可以透過覆寫，在特定的時期執行程式。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cailiwu.github.io/2020/06/16/react_4/lifecycle.png">
+<meta property="article:published_time" content="2020-06-16T04:26:43.000Z">
+<meta property="article:modified_time" content="2020-06-16T04:39:40.735Z">
 <meta property="article:author" content="CaiLi">
+<meta property="article:tag" content="ReactJS">
+<meta property="article:tag" content="Basic">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cailiwu.github.io/2020/06/16/react_4/lifecycle.png">
   
     <link rel="alternative" href="/atom.xml" title="Learning Corner | CaiLi" type="application/atom+xml">
   
@@ -150,16 +158,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-react_4" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-react_4" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/react_4/">React components lifecycle(2)</a>
+    <h1 class="article-title" itemprop="name">
+      React components lifecycle(2)
     </h1>
   
 
@@ -173,7 +179,40 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>每一個component都有多個生命週期，可以透過覆寫，在特定的時期執行程式。</p>
-        
+<a id="more"></a>
+<h2 id="Component-lifecycle"><a href="#Component-lifecycle" class="headerlink" title="Component lifecycle"></a>Component lifecycle</h2><p><img src="lifecycle.png" alt=""></p>
+<p><strong><em>Mounting</em></strong><br>當instance被建立並載入DOM時，依序呼叫：<br><code>constructor()</code><br><code>static getDerivedStateFromProps()</code><br><code>render()</code><br><code>componentDidMount()</code></p>
+<p><strong><em>Updating</em></strong><br>當 prop 或 state 有變化時，就會觸發更新，依序呼叫：<br><code>static getDerivedStateFromProps()</code><br><code>shouldComponentUpdate()</code><br><code>render()</code><br><code>getSnapshotBeforeUpdate()</code><br><code>componentDidUpdate()</code></p>
+<p><strong><em>Unmounting</em></strong><br>當一個 component 被從 DOM 中移除時，依序呼叫：<br><code>componentWillUnmount()</code></p>
+<p><strong><em>Error handling</em></strong><br>當一個component render過程或週期出錯時，則會呼叫<br><code>static getDerivedStateFromError()</code><br><code>componentDidCatch()</code></p>
+<hr>
+<h2 id="介紹instance屬性"><a href="#介紹instance屬性" class="headerlink" title="介紹instance屬性"></a>介紹instance屬性</h2><p><strong>state</strong></p>
+<p>組件本身不會被修改的屬性，在class中透過<code>constructor</code>來設定。</p>
+<p>顯示當下組件被建立的時間，不用透過props傳入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NowTime</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">//使用類別中的constructor建構子，參數中傳入props是必要的</span></span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">      <span class="comment">//super-&gt; react.Component內的props屬性</span></span><br><span class="line">      <span class="keyword">super</span>(props)</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;<span class="attr">time</span> : <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render()&#123;</span><br><span class="line">      <span class="comment">//使用類別中state的屬性</span></span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>現在時間是&#123;this.state.time&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">NowTime</span> /&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="組件開始及結束-詳細"><a href="#組件開始及結束-詳細" class="headerlink" title="組件開始及結束(詳細)"></a>組件開始及結束(詳細)</h2><p><strong>componentDidMount()</strong><br>在一個component被mount後，componentDidMount()會馬上被呼叫。<br>適用時機：</p>
+<ul>
+<li>DOM node 初始化</li>
+<li>實例化的網路請求(network request)</li>
+<li>subscription</li>
+</ul>
+<p>sample 利用改變state來讓畫面刷新</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NowTime</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">//使用類別中的constructor建構子，參數中傳入props是必要的</span></span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">      <span class="comment">//super-&gt; react.Component內的props屬性</span></span><br><span class="line">      <span class="keyword">super</span>(props)</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;<span class="attr">time</span> : <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="comment">// 組件建構完成，每一次都去刷新this.state.time</span></span><br><span class="line">    <span class="keyword">const</span> updateTime = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.setState(&#123;<span class="attr">time</span>: <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    setInterval(updateTime, <span class="number">1000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  render()&#123;</span><br><span class="line">      <span class="comment">//使用類別中state的屬性</span></span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>現在時間是&#123;this.state.time&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">NowTime</span> /&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
+<p><strong>setState()</strong><br>改變狀態，會將此排進一個queue,並告知React這個component需要用到更新後的state並要重新render。<br>setState是類似請求，並非馬上對component動作，為了更好的效能，可能會有延遲，一次更新數個。<br>由於可能不會馬上更新，所以setState後立刻讀取this.state會有潛在問題，可以使用<code>setState(updater, callback)</code>或是<code>componentDidUpdate</code>, 來確保已更新。<br>☛ 不要在contructor呼叫setState()，要用內部的state, this.state, 以避免side effect</p>
+<p><strong>componentDidUpdate()</strong><br>state被更新時會觸發的方法，在component更新後，可以在此做一些網路請求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate (prevProps, prevState) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'prevProps, prevState'</span>, prevProps, prevState,)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'state被更新了'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>componentWillUnmount()</strong><br>一個component 被unmount和destroy馬上被呼叫，可以在這裡取消計時器或訂閱<br>☛ 不要在componentWillUnmount（）內呼叫setState()，因為不會再重新render。</p>
+<p>sample移除component</p>
+<p>利用RectDOM提供的<code>unmountComponentAtNode(Element)</code></p>
+<p>先寫一個移除element test code</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> removeElement = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ReactDOM.unmountComponentAtNode(<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(removeElement, <span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">componentWillUnmount () &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'component被移除了，在'</span>, <span class="keyword">this</span>.state.time)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://ithelp.ithome.com.tw/articles/10200767" target="_blank" rel="noopener">Component的狀態State及生命週期Lifecycle</a></p>
+<p><a href="https://zh-hant.reactjs.org/docs/react-component.html" target="_blank" rel="noopener">React.Component</a></p>
+
       
 
       
@@ -199,16 +238,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/react_4/">顯示更多 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/06/16/react_4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/16/react_3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React components(1)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -228,250 +326,14 @@
 
 
 
-
   
-    <article id="post-react_3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/react_3/">React components(1)</a>
-    </h1>
   
 
-        
-        <a href="/2020/06/16/react_3/" class="archive-article-date">
-  	<time datetime="2020-06-16T03:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在React 中可以將components定義成class 或 function, 要定義一個component class需繼承<code>React.Component</code>, 然而在子類別內需定義<code>render()</code>這個方法。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/react_3/">顯示更多 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react_2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/12/react_2/">Introduction of React JSX</a>
-    </h1>
   
 
-        
-        <a href="/2020/06/12/react_2/" class="archive-article-date">
-  	<time datetime="2020-06-12T07:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JSX是開發React的核心語法，雖然長得很像HTML，是一種React自創的簡寫法，需要使用Babel編譯之。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/12/react_2/">顯示更多 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react_1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/11/react_1/">React JS (從零到一) 安裝環境</a>
-    </h1>
   
 
-        
-        <a href="/2020/06/11/react_1/" class="archive-article-date">
-  	<time datetime="2020-06-11T08:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。</p>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">modern</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">environment</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/11/react_1/">顯示更多 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -494,8 +356,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
