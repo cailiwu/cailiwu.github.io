@@ -6,14 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://cailiwu.github.io">
-  <title>Archives | Learning Corner | CaiLi</title>
+  <title>React components(1) | Learning Corner | CaiLi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Learning Corner | CaiLi">
-<meta property="og:url" content="https://cailiwu.github.io/archives/index.html">
+  <meta name="description" content="在React 中可以將components定義成class 或 function, 要定義一個component class需繼承React.Component, 然而在子類別內需定義render()這個方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React components(1)">
+<meta property="og:url" content="https://cailiwu.github.io/2020/06/16/react_3/index.html">
 <meta property="og:site_name" content="Learning Corner | CaiLi">
+<meta property="og:description" content="在React 中可以將components定義成class 或 function, 要定義一個component class需繼承React.Component, 然而在子類別內需定義render()這個方法。">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-06-16T03:08:43.000Z">
+<meta property="article:modified_time" content="2020-06-16T03:11:31.205Z">
 <meta property="article:author" content="CaiLi">
+<meta property="article:tag" content="ReactJS">
+<meta property="article:tag" content="Basic">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Learning Corner | CaiLi" type="application/atom+xml">
@@ -150,36 +156,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-react_3" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      React components(1)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/16/react_3/" class="archive-article-date">
+
+        
+        <a href="/2020/06/16/react_3/" class="archive-article-date">
   	<time datetime="2020-06-16T03:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/16/react_3/">React components(1)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在React 中可以將components定義成class 或 function, 要定義一個component class需繼承<code>React.Component</code>, 然而在子類別內需定義<code>render()</code>這個方法。</p>
+<a id="more"></a>
+<h2 id="建立動態的components"><a href="#建立動態的components" class="headerlink" title="建立動態的components"></a>建立動態的components</h2><p>React 在覆蓋前一次的element時，會與目前的比較只更新變動的部分。<br>組件宣告後不可變動，若每個組件差一點點，那麼就要重新宣告？<br><code>app.jsx</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> displayTime = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 顯示時間的組件</span></span><br><span class="line">  <span class="keyword">let</span> nowTime = (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;span&gt;現在時間：&#123;<span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  )</span><br><span class="line">  ReactDOM.render(nowTime, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setInterval(displayTime, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h2 id="利用Class建造一個組件建構器"><a href="#利用Class建造一個組件建構器" class="headerlink" title="利用Class建造一個組件建構器"></a>利用Class建造一個組件建構器</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">HelloWorld</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="Component-Props-屬性"><a href="#Component-Props-屬性" class="headerlink" title="Component Props 屬性"></a>Component Props 屬性</h2><p><code>Props</code>主要用來提供值(資料)給組件使用, 同一個組件因為props不同，內容隨之改變。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello World, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 宣告一個欲渲染的根組件</span></span><br><span class="line"><span class="keyword">let</span> rootDiv = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123; <span class="comment">/*這是註解, 插入自製組件*/</span> &#125;</span><br><span class="line">    &lt;HelloWorld name=<span class="string">"Mary"</span>&gt;&lt;<span class="regexp">/HelloWorld&gt;</span></span><br><span class="line"><span class="regexp">    &lt;HelloWorld name="Jhon"&gt;&lt;/</span>HelloWorld&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">)</span></span><br><span class="line"><span class="regexp">ReactDOM.render(rootDiv, document.getElementById('root'))</span></span><br></pre></td></tr></table></figure>
+<h2 id="綁定style"><a href="#綁定style" class="headerlink" title="綁定style"></a>綁定style</h2><p>透過props改變style樣式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&#123;this.props.style&#125;</span>&gt;</span>Hello World, &#123;this.props.name&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 宣告一個欲渲染的根組件</span></span><br><span class="line"><span class="keyword">let</span> rootDiv = (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &#123; <span class="comment">/*這是註解, 插入自製組件*/</span> &#125;</span><br><span class="line">    &lt;HelloWorld name=<span class="string">"Mary"</span> style=&#123; &#123;<span class="string">'font-size'</span>: <span class="number">20</span>&#125; &#125;&gt;&lt;<span class="regexp">/HelloWorld&gt;</span></span><br><span class="line"><span class="regexp">    &lt;HelloWorld name="Jhon" style=&#123; &#123;'font-size': 10&#125; &#125;&gt;&lt;/</span>HelloWorld&gt;</span><br><span class="line">  &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">)</span></span><br><span class="line"><span class="regexp">ReactDOM.render(rootDiv, document.getElementById('root'))</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://zh-hant.reactjs.org/docs/react-component.html" target="_blank" rel="noopener">React.Component</a><br><a href="https://ithelp.ithome.com.tw/articles/10200595" target="_blank" rel="noopener">關於Components的那件小事</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,111 +214,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/06/16/react_3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/12/react_2/" class="archive-article-date">
-  	<time datetime="2020-06-12T07:20:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-12</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/06/12/react_2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Introduction of React JSX</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/12/react_2/">Introduction of React JSX</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/06/11/react_1/" class="archive-article-date">
-  	<time datetime="2020-06-11T08:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/06/11/react_1/">React JS (從零到一) 安裝環境</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ReactJS</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">modern</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">environment</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -322,8 +336,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
