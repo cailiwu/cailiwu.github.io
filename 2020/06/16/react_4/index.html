@@ -17,7 +17,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cailiwu.github.io/2020/06/16/react_4/lifecycle.png">
 <meta property="article:published_time" content="2020-06-16T04:26:43.000Z">
-<meta property="article:modified_time" content="2020-06-16T04:39:40.735Z">
+<meta property="article:modified_time" content="2020-06-17T03:59:14.777Z">
 <meta property="article:author" content="CaiLi">
 <meta property="article:tag" content="ReactJS">
 <meta property="article:tag" content="Basic">
@@ -191,7 +191,12 @@
 <p>顯示當下組件被建立的時間，不用透過props傳入。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NowTime</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="comment">//使用類別中的constructor建構子，參數中傳入props是必要的</span></span><br><span class="line">  <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">      <span class="comment">//super-&gt; react.Component內的props屬性</span></span><br><span class="line">      <span class="keyword">super</span>(props)</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;<span class="attr">time</span> : <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleTimeString()&#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  render()&#123;</span><br><span class="line">      <span class="comment">//使用類別中state的屬性</span></span><br><span class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>現在時間是&#123;this.state.time&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">NowTime</span> /&gt;</span></span>,<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
 
-<h2 id="組件開始及結束-詳細"><a href="#組件開始及結束-詳細" class="headerlink" title="組件開始及結束(詳細)"></a>組件開始及結束(詳細)</h2><p><strong>componentDidMount()</strong><br>在一個component被mount後，componentDidMount()會馬上被呼叫。<br>適用時機：</p>
+<h2 id="組件開始及結束-詳細"><a href="#組件開始及結束-詳細" class="headerlink" title="組件開始及結束(詳細)"></a>組件開始及結束(詳細)</h2><p><strong>constructor()</strong><br>React component 會在mount前呼叫<code>constructor</code>。當建立一個子類別時，在任何宣告前，應呼叫<code>super(props)</code>，否則this.props會出現undefined<br>兩種用途：</p>
+<ul>
+<li>初始化內部state，利用this.state</li>
+<li>為event handler bind instance<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">  <span class="keyword">super</span>(props);</span><br><span class="line">  <span class="comment">// 不要在這裡呼叫 this.setState()！</span></span><br><span class="line">  <span class="keyword">this</span>.state = &#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;;</span><br><span class="line">  <span class="keyword">this</span>.handleClick = <span class="keyword">this</span>.handleClick.bind(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>componentDidMount()</strong><br>在一個component被mount後，componentDidMount()會馬上被呼叫。<br>適用時機：</p>
 <ul>
 <li>DOM node 初始化</li>
 <li>實例化的網路請求(network request)</li>
@@ -204,7 +209,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">componentDidUpdate (prevProps, prevState) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'prevProps, prevState'</span>, prevProps, prevState,)</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'state被更新了'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>componentWillUnmount()</strong><br>一個component 被unmount和destroy馬上被呼叫，可以在這裡取消計時器或訂閱<br>☛ 不要在componentWillUnmount（）內呼叫setState()，因為不會再重新render。</p>
 <p>sample移除component</p>
-<p>利用RectDOM提供的<code>unmountComponentAtNode(Element)</code></p>
+<p>利用ReactDOM提供的<code>unmountComponentAtNode(Element)</code></p>
 <p>先寫一個移除element test code</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> removeElement = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  ReactDOM.unmountComponentAtNode(<span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(removeElement, <span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
 
@@ -298,6 +303,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/06/17/react-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          ReactJS enevnt handler
+        
+      </div>
+    </a>
   
   
     <a href="/2020/06/16/react_3/" id="article-nav-older" class="article-nav-link-wrap">
