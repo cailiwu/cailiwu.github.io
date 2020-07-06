@@ -6,23 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://cailiwu.github.io">
-  <title>ReactJS enevnt handler | Learning Corner | CaiLi</title>
+  <title>Introduction of Redux | Learning Corner | CaiLi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="React element 事件處理與使用DOM element,有些許語法上的差異  HTML (onclick)123&lt;button onclick&#x3D;&quot;activateLasers()&quot;&gt;  Activate Lasers&lt;&#x2F;button&gt; React (onClick)123&lt;button onClick&#x3D;&amp;#123;activateLasers&amp;#125;&amp;g">
+  <meta name="description" content="Redux 跟 React 並沒有關係。你可以使用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。Redux 簡化了Flux的概念">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ReactJS enevnt handler">
-<meta property="og:url" content="https://cailiwu.github.io/2020/06/17/react-5/index.html">
+<meta property="og:title" content="Introduction of Redux">
+<meta property="og:url" content="https://cailiwu.github.io/2020/07/06/react-redux/index.html">
 <meta property="og:site_name" content="Learning Corner | CaiLi">
-<meta property="og:description" content="React element 事件處理與使用DOM element,有些許語法上的差異  HTML (onclick)123&lt;button onclick&#x3D;&quot;activateLasers()&quot;&gt;  Activate Lasers&lt;&#x2F;button&gt; React (onClick)123&lt;button onClick&#x3D;&amp;#123;activateLasers&amp;#125;&amp;g">
+<meta property="og:description" content="Redux 跟 React 並沒有關係。你可以使用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。Redux 簡化了Flux的概念">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cailiwu.github.io/2020/06/17/react-5/example.png">
-<meta property="article:published_time" content="2020-06-17T05:08:10.000Z">
-<meta property="article:modified_time" content="2020-06-17T05:10:27.885Z">
+<meta property="og:image" content="https://cailiwu.github.io/2020/07/06/react-redux/flux.png">
+<meta property="og:image" content="https://cailiwu.github.io/2020/07/06/react-redux/flow.png">
+<meta property="article:published_time" content="2020-07-06T14:20:41.000Z">
+<meta property="article:modified_time" content="2020-07-06T14:34:53.241Z">
 <meta property="article:author" content="CaiLi">
 <meta property="article:tag" content="ReactJS">
-<meta property="article:tag" content="Basic">
+<meta property="article:tag" content="Redux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cailiwu.github.io/2020/06/17/react-5/example.png">
+<meta name="twitter:image" content="https://cailiwu.github.io/2020/07/06/react-redux/flux.png">
   
     <link rel="alternative" href="/atom.xml" title="Learning Corner | CaiLi" type="application/atom+xml">
   
@@ -158,57 +159,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react-5" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react-redux" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      ReactJS enevnt handler
+      Introduction of Redux
     </h1>
   
 
         
-        <a href="/2020/06/17/react-5/" class="archive-article-date">
-  	<time datetime="2020-06-17T05:08:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-17</time>
+        <a href="/2020/07/06/react-redux/" class="archive-article-date">
+  	<time datetime="2020-07-06T14:20:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>React element 事件處理與使用DOM element,有些許語法上的差異</p>
-<ul>
-<li>HTML (onclick)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onclick=<span class="string">"activateLasers()"</span>&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li>React (onClick)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;button onClick=&#123;activateLasers&#125;&gt;</span><br><span class="line">  Activate Lasers</span><br><span class="line">&lt;<span class="regexp">/button&gt;</span></span><br></pre></td></tr></table></figure>
+        <p>Redux 跟 React 並沒有關係。你可以使用 React、Angular、Ember、jQuery 或甚至原生 JavaScript 來撰寫 Redux 應用程式。Redux 簡化了Flux的概念</p>
 <a id="more"></a>
-當利用ES6 class來定義component時,慣例是event handler當成class的方法。</li>
-</ul>
-<p>example</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CheckButton</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props)</span><br><span class="line">    <span class="keyword">this</span>.state = (&#123;<span class="attr">clickCount</span>: <span class="number">0</span>&#125;)</span><br><span class="line">    <span class="comment">// 為了讓 `this` 能在 callback 中被使用，這裡的綁定是必要的：</span></span><br><span class="line">    <span class="keyword">this</span>.addCount = <span class="keyword">this</span>.addCount.bind(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;this.state.clickCount&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addCount&#125;</span>&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">  addCount() &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">state</span> =&gt;</span> state.clickCount += <span class="number">1</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'+1'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">CheckButton</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="在事件中傳入參數"><a href="#在事件中傳入參數" class="headerlink" title="在事件中傳入參數"></a>在事件中傳入參數</h2><p>使用的過程中常常需要傳遞額外的參數給event，有兩種方法：</p>
+<p><img src="flux.png" alt=""></p>
+<blockquote>
+<p>Facebook 提出的架構<br>Flux單向資料流的設計模式(事件改變狀態，狀態改變ＵＩ)<br>4 個角色，Action，Dispatcher，Store，View</p>
+</blockquote>
+<h2 id="安裝套件"><a href="#安裝套件" class="headerlink" title="安裝套件"></a>安裝套件</h2><p><code>npm install --save react-redux</code></p>
 <ul>
-<li>arrow function<br>e會當做第二參數明確傳遞下去<br><code>&lt;button onClick={(e) =&gt; this.deleteRow(id, e)}&gt;Delete Row&lt;/button&gt;</code></li>
-<li>bind<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  render() &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;this.state.clickCount&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.addCount.bind(this,</span> <span class="attr">2</span>)&#125;&gt;</span>+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  &#125;</span><br><span class="line">  addCount(count) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(<span class="function"><span class="params">state</span> =&gt;</span> state.clickCount += count)</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'+'</span>, count)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
+<li>三個元件<ul>
+<li>action: 事件類別(type)與payload(資訊)</li>
+<li>reducer: 一個純函式，負責將 state 根據給定的 action 做變化而得到新的 state。</li>
+<li>store: 整個 Redux 運作的核心，負責儲存整個 state tree，每個專案只會有一個 store。</li>
+</ul>
+</li>
+<li>原則<ul>
+<li>整個資料源(state)都在store裡</li>
+<li>state is read only, 改變state的方式就是發出一個action</li>
+<li>利用純函式進行修改，pure reducer負責根據action改變state</li>
+</ul>
 </li>
 </ul>
-<h2 id="觸發事件-onChange…"><a href="#觸發事件-onChange…" class="headerlink" title="觸發事件(onChange…)"></a>觸發事件(onChange…)</h2><p>使用<code>window.event.target</code>,此屬性則是永遠指向觸發事件的 DOM 物件。</p>
-<p>處理下拉式選單的觸發事件example</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InputDropdown</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props)</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">gender</span>: <span class="string">'M'</span>&#125;</span><br><span class="line">    <span class="comment">// 為了讓 `this` 能在 callback 中被使用，這裡的綁定是必要的：</span></span><br><span class="line">    <span class="keyword">this</span>.changeGender = <span class="keyword">this</span>.changeGender.bind(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  changeGender(event) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(event.target)</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">gender</span>: event.target.value&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate(prevProps, prevState) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`已經更新,從<span class="subst">$&#123;prevState.gender&#125;</span> -&gt; <span class="subst">$&#123;<span class="keyword">this</span>.state.gender&#125;</span>`</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">select</span> <span class="attr">onChange</span>=<span class="string">&#123;this.changeGender.bind(this)&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">              <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"M"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></span><br><span class="line"><span class="xml">              <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"F"</span>&gt;</span>女<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(<span class="xml"><span class="tag">&lt;<span class="name">InputDropdown</span> /&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>))</span><br></pre></td></tr></table></figure>
-<p><img src="example.png" alt=""></p>
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><blockquote>
-<p>bind 綁定this的原函式</p>
-</blockquote>
-<blockquote>
-<p>call 回傳function 執行的結果<br>給定this與其他參數來呼叫某個函式<br><code>func.call( this , 1 , 2 , 3 )</code></p>
-</blockquote>
-<blockquote>
-<p>apply回傳function 執行的結果<br>apply()就只是一個call的shortcut<br><code>func.aplly( this , [1 , 2 , 3 ])</code></p>
-</blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://ithelp.ithome.com.tw/articles/10200941" target="_blank" rel="noopener">進入Component的事件處理</a><br><a href="https://zh-hant.reactjs.org/docs/handling-events.html" target="_blank" rel="noopener">React 事件處理</a></p>
+<h2 id="Redux-Flow"><a href="#Redux-Flow" class="headerlink" title="Redux Flow"></a>Redux Flow</h2><p><img src="flow.png" alt=""></p>
+<p>定義<code>state</code>資料集</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> data = &#123;<span class="attr">num</span>: <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>設定<code>action</code>, 將action定義指令名稱與payload</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> addNum = <span class="function"><span class="params">article</span> =&gt;</span> (&#123;</span><br><span class="line">  type: <span class="string">"addNum"</span>,</span><br><span class="line">  payload: article</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>託付資料，接收不同的指令，做不同的事<code>reducer</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> rootReducer = <span class="function">(<span class="params">state= data, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"addNum"</span>:</span><br><span class="line">      <span class="keyword">return</span> &#123; <span class="attr">num</span>: state.num + action.payload&#125;;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>創建store將reducer置入, 負責整合所有的reducer</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">const</span> store =  createStore(rootReducer);</span><br></pre></td></tr></table></figure>
+
+<h2 id="串接component與store"><a href="#串接component與store" class="headerlink" title="串接component與store"></a>串接component與store</h2><p><code>react-redux</code>負責兩個組件資料傳遞的部分，<code>react</code>最小單位為組件，會藉由<code>props</code>將父組件資料傳至子組件。<br>利用<code>redux</code>做資料的統一管理，特別的是<code>&lt;Provider/&gt;</code>就是整個的父組件，把store載入</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        &lt;Caculator /&gt;</span><br><span class="line">      &lt;<span class="regexp">/Provider&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>component.jsx</code><br>接著,宣告<code>mapStateToProps</code>這個組件需要哪些資料。<br><code>mapDispatchToProps</code>宣告組件有哪些dispatch動作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function"><span class="params">state</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;<span class="attr">data</span>: state.num&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function"><span class="params">dispatch</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    addMessage: <span class="function"><span class="params">num</span> =&gt;</span> dispatch(addNum(num))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再用<code>connect</code>把組件與<code>mapStateToProps</code> <code>mapDispatchToProps</code>連接起來，然後回傳新組件, 所以這個新的組件就有props了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;connect&#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">const</span> Caculator = connect(mapStateToProps, mapDispatchToProps)(Book)</span><br></pre></td></tr></table></figure>
+<p>取資料</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.props.data <span class="comment">// 1</span></span><br><span class="line"><span class="comment">// dispatcg action</span></span><br><span class="line"><span class="keyword">this</span>.props.addMessage(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="資料夾結構"><a href="#資料夾結構" class="headerlink" title="資料夾結構"></a>資料夾結構</h2><p>參考<br><a href="https://github.com/ms314006/learnReactJs/tree/master/ReactRouter/ex02/src" target="_blank" rel="noopener">ms314006/learnReactJs</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://ithelp.ithome.com.tw/articles/10203502" target="_blank" rel="noopener">筆記React當React遇上Redux(3)</a><br><a href="https://note.pcwu.net/2017/03/04/redux-intro/" target="_blank" rel="noopener">Redex 核心概念筆記</a></p>
 
       
 
@@ -226,7 +240,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redux</a>
         		</li>
       		
 		</ul>
@@ -282,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/06/17/react-5/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/07/06/react-redux/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +310,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/17/react-6/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ReactJS 條件控制與迴圈
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/16/react_4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">React components lifecycle(2)</div>
+    <a href="/2020/07/04/css1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CSS Grid Layout</div>
       <i class="icon-circle-right"></i>
     </a>
   
