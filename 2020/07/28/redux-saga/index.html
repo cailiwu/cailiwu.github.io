@@ -6,23 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://cailiwu.github.io">
-  <title>React JS (從零到一) 安裝環境 | Learning Corner | CaiLi</title>
+  <title>What is Redux-Saga | Learning Corner | CaiLi</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。">
+  <meta name="description" content="為什麼要使用Redux Saga？ 用Redux Saga 的好處為何？ Redux Saga 在系統的角色是什麼？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React JS (從零到一) 安裝環境">
-<meta property="og:url" content="https://cailiwu.github.io/2020/06/11/react_1/index.html">
+<meta property="og:title" content="What is Redux-Saga">
+<meta property="og:url" content="https://cailiwu.github.io/2020/07/28/redux-saga/index.html">
 <meta property="og:site_name" content="Learning Corner | CaiLi">
-<meta property="og:description" content="由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。">
+<meta property="og:description" content="為什麼要使用Redux Saga？ 用Redux Saga 的好處為何？ Redux Saga 在系統的角色是什麼？">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-11T08:19:56.000Z">
-<meta property="article:modified_time" content="2020-06-12T07:30:59.904Z">
+<meta property="og:image" content="https://cailiwu.github.io/2020/07/28/redux-saga/redux-saga.png">
+<meta property="article:published_time" content="2020-07-28T07:17:43.000Z">
+<meta property="article:modified_time" content="2020-07-28T07:29:37.435Z">
 <meta property="article:author" content="CaiLi">
 <meta property="article:tag" content="ReactJS">
-<meta property="article:tag" content="Basic">
-<meta property="article:tag" content="modern">
-<meta property="article:tag" content="environment">
+<meta property="article:tag" content="Middleware">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cailiwu.github.io/2020/07/28/redux-saga/redux-saga.png">
   
     <link rel="alternative" href="/atom.xml" title="Learning Corner | CaiLi" type="application/atom+xml">
   
@@ -158,70 +158,67 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react_1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-redux-saga" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      React JS (從零到一) 安裝環境
+      What is Redux-Saga
     </h1>
   
 
         
-        <a href="/2020/06/11/react_1/" class="archive-article-date">
-  	<time datetime="2020-06-11T08:19:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-11</time>
+        <a href="/2020/07/28/redux-saga/" class="archive-article-date">
+  	<time datetime="2020-07-28T07:17:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>由於工作環境需使用ReactJS, 藉此來記錄學習React的過程，參考前輩的一步步構築的過程，我一點一滴地跟進，慢慢累積學習的能量。</p>
-<a id="more"></a>
-<h3 id="React-工具包"><a href="#React-工具包" class="headerlink" title="React 工具包"></a>React 工具包</h3><ol>
-<li>NodeJS &amp; Npm <code>npm init</code></li>
-<li>安裝Webpack <ul>
-<li><code>npm install webpack -g</code></li>
-<li><code>npm install webpack --save-dev</code> </li>
-<li><code>npm install webpack-cli -g</code></li>
-<li><code>npm install webpack-cli --save</code></li>
-<li><code>npm install webpack-dev-server -g</code></li>
-</ul>
-</li>
-<li>Babel</li>
-<li>React &amp; React DOM<ul>
-<li><code>npm install react --save</code></li>
-<li><code>npm install react-dom --save</code></li>
-</ul>
+        <ol>
+<li>為什麼要使用Redux Saga？</li>
+<li>用Redux Saga 的好處為何？</li>
+<li>Redux Saga 在系統的角色是什麼？<a id="more"></a>
+
 </li>
 </ol>
-<h3 id="JSX寫React-範例"><a href="#JSX寫React-範例" class="headerlink" title="JSX寫React 範例"></a>JSX寫React 範例</h3><p>一個 JavaScript 的語法擴充，寫 React 的時候透過這個語法來描述使用者界面的外觀。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//建立一個DOM物件</span></span><br><span class="line"><span class="keyword">let</span> element = <span class="xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello, world!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//使用ReactDOM.render把剛建立的物件element插入目標DOM(id="root")中</span></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  element,</span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'root'</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><img src="redux-saga.png" alt=""><br>Redux - Saga 在 Redux 中是以 Middleware存在的，在程式調用 Store 的時候處理 Async Action，將異步操作邏輯集中在一個地方處理。</p>
+<ul>
+<li>成為Component 及 Reducer中間橋樑(<strong>異步action</strong>)</li>
+<li>Generator function base， 在<code>yield</code>過程中喊停, 完全控制效果的執行方式和時間</li>
+</ul>
+<p>優點：</p>
+<ul>
+<li>解決reducer非同步的問題</li>
+<li>可讀性較佳，業務邏輯不會全部擠在reducer或component中</li>
+<li>保持 action 和 reducer 的簡單純粹</li>
+</ul>
+<h3 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h3><p>Q1: 為什麼不用async / await 呼叫非同步就好，而要用redux-saga？<br>A1: Redux-saga利用generator擁有更細緻的操作async function, 可以暫停、停止、開始。<br>Generator 可以暫停function，等要呼叫的時候，再從下一個開始呼叫。<br>async / await  無法處理複雜的副作用。</p>
+<p>Q2: 什麼情形下要分離業務邏輯的code？<br>A2: 在使用異步獲取數據時，目標是管理更容易，可以獨立處理副作用。<br>-&gt; <code>副作用</code> 閱讀程序時，不能看到直接因果關係，程式可讀性將低。</p>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><p>安裝</p>
+<p><code>npm install --save redux-saga</code></p>
+<p><strong>操作方法</strong><br>原本被 dispatch 觸發的 Method 從 Reducer 變成 Redux-Saga。</p>
+<ul>
+<li><code>call</code> 呼叫function</li>
+<li><code>put</code> dispatch to store</li>
+<li><code>takeEvery</code> 每次action發起後，啟動任務</li>
+</ul>
+<p><strong>fetchData generator function</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; call, put &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">fetchData</span>(<span class="params">action</span>) </span>&#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">// call(api funciton, 參數)</span></span><br><span class="line">      <span class="keyword">const</span> data = <span class="keyword">yield</span> call(Api.fetchUser, action.payload.url);</span><br><span class="line">      <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">"FETCH_SUCCEEDED"</span>, data&#125;);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">      <span class="keyword">yield</span> put(&#123;<span class="attr">type</span>: <span class="string">"FETCH_FAILED"</span>, error&#125;);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>訂閱<strong>action</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; takeEvery &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">mySaga</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> takeEvery(<span class="string">'FETCH_DATA'</span>, fetchData)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> mySaga;</span><br></pre></td></tr></table></figure>
 
-<h3 id="使用Loader"><a href="#使用Loader" class="headerlink" title="使用Loader"></a>使用Loader</h3><p><a href="https://webpack.docschina.org/loaders/babel-loader/" target="_blank" rel="noopener">babel-loader</a><br>瀏覽器只認得HTML, CSS, Javascript, 但是瀏覽器看不懂<code>JSX</code>，就要利用Babel編譯他。</p>
-<blockquote>
-<p>npm install babel-loader –save-dev<br>根據babel-loader的版本不同選擇安裝不同的核心<br>版本8以上 <code>npm install @babel/core --save-dev</code><br>版本7 <code>npm install babel-core --save</code><br>針對JSX <code>npm install @babel/preset-react --save-dev</code><br>針對ES6 <code>npm install @babel/preset-env --save-dev</code></p>
-</blockquote>
-<h3 id="設定Webpack-config"><a href="#設定Webpack-config" class="headerlink" title="設定Webpack config"></a>設定Webpack config</h3><p><code>webpack -p</code> 打包<br><code>webpack.config.js</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    entry: [<span class="string">'./index.js'</span>, <span class="string">'./app.jsx'</span>],</span><br><span class="line">    output: &#123;</span><br><span class="line">        filename: <span class="string">'bundle.js'</span>,</span><br><span class="line">        path: path.resolve(__dirname, <span class="string">'./'</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="built_in">module</span>: &#123;</span><br><span class="line">        rules: [</span><br><span class="line">            <span class="comment">//第一個loader編譯JSX</span></span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/.jsx$/</span>, <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>, <span class="attr">use</span>: &#123; <span class="attr">loader</span>: <span class="string">'babel-loader'</span>, <span class="attr">options</span>: &#123; <span class="attr">presets</span>: [<span class="string">'@babel/preset-react'</span>, <span class="string">'@babel/preset-env'</span>] &#125; &#125; &#125;,</span><br><span class="line">            <span class="comment">//第二個loader編譯ES6</span></span><br><span class="line">            &#123; <span class="attr">test</span>: <span class="regexp">/.js$/</span>, <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>, <span class="attr">use</span>: &#123; <span class="attr">loader</span>: <span class="string">'babel-loader'</span>, <span class="attr">options</span>: &#123; <span class="attr">presets</span>: [<span class="string">'@babel/preset-env'</span>] &#125; &#125; &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    devServer: &#123;</span><br><span class="line">      port: <span class="number">9000</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="開啟本機伺服器"><a href="#開啟本機伺服器" class="headerlink" title="開啟本機伺服器"></a>開啟本機伺服器</h3><p>「改檔案儲存」&gt;「打包」&gt;「執行」&gt;「重新整理看結果」，但是webpack-dev-server可以自動打包與啟動<br><code>webpack-dev-server</code></p>
-<blockquote>
-<p>npm i webpack-dev-server –save-dev</p>
-</blockquote>
-<p><strong>名詞解釋</strong></p>
-<blockquote>
-<p>V8 由Google 開源的Javascript引擎，會將程式碼編譯成機器碼再執行，以便提昇效能。</p>
-</blockquote>
-<blockquote>
-<p>Source Map 原始碼映射資料表，執行程式碼與撰寫程式碼對應的檔案，方便debug。</p>
-</blockquote>
-<blockquote>
-<p>webpack-dev-server 是一個非常小的 Node.js Express server，他使用了 webpack-dev-middleware 來服務 webpack 的綑綁功能，而 webpack-dev-server 背後使用了 socket.IO ，所以當發生事件的時候，Server 會去通知 Client 端坐一些事情；至於甚麼事情，當然就是自動地將瀏覽器重整了</p>
-</blockquote>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a href="https://ithelp.ithome.com.tw/users/20106935/ironman/1651" target="_blank" rel="noopener">一步一腳印的React旅程</a><br><a href="https://skychang.github.io/2015/08/27/Webpack-dev_server/" target="_blank" rel="noopener">Webpack - 使用 Webpack Dev Server 進行開發</a></p>
+<p><strong>rootSaga 合併多個saga</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;all&#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span>;</span><br><span class="line"><span class="keyword">import</span> mySaga <span class="keyword">from</span> <span class="string">'./actions'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 包裝所有的saga</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">rootSaga</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> all([</span><br><span class="line">    mySaga();</span><br><span class="line">  ])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>串進middleware</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</span><br><span class="line"><span class="keyword">import</span> createSagaMiddleware <span class="keyword">from</span> <span class="string">'redux-saga'</span>;</span><br><span class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'../reducer'</span>;</span><br><span class="line"><span class="keyword">import</span> rootSaga <span class="keyword">from</span> <span class="string">'../saga'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 建立實體</span></span><br><span class="line"><span class="keyword">const</span> sagaMiddleware = createSagaMiddleware();</span><br><span class="line"><span class="comment">// apply做連動</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> createStore(reducer, applyMiddleware(sagaMiddleware));</span><br><span class="line"><span class="comment">// run起來</span></span><br><span class="line">sagaMiddleware.run(rootSaga);</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://medium.com/@ravindermahajan/why-use-redux-saga-f3413a3f7e34" target="_blank" rel="noopener">Why Use Redux Saga?</a><br><a href="https://medium.com/%E6%89%8B%E5%AF%AB%E7%AD%86%E8%A8%98/understanding-redux-saga-148d7f070fa" target="_blank" rel="noopener">Redux-Saga | 原理解析</a><br><a href="https://juejin.im/post/5b8d4eaa518825430810d735" target="_blank" rel="noopener">Redux-saga框架使用详解及Demo教程</a></p>
 
       
 
@@ -239,15 +236,7 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Basic</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">modern</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">environment</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Middleware</a>
         		</li>
       		
 		</ul>
@@ -303,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/06/11/react_1/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://cailiwu.github.io/2020/07/28/redux-saga/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -317,15 +306,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/12/react_2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Introduction of React JSX
-        
-      </div>
-    </a>
   
+    <a href="/2020/07/06/react-redux/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Introduction of Redux</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
