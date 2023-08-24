@@ -1,0 +1,615 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.5"/><meta name="description" content="經常寫 Node 應用程式的人通常免不了要和 ORM 打交道，畢竟寫原生 SQL 對於大部分的人會比較複雜也或許情境不需要用到這樣的原生操作。ORM 的便利性使得很多情況下我們能直觀而快速地取得資料庫的資料。" data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="Next-generation ORM：Prisma - Blog by Shelly Wu" data-gatsby-head="true"/><meta name="twitter:description" content="經常寫 Node 應用程式的人通常免不了要和 ORM 打交道，畢竟寫原生 SQL 對於大部分的人會比較複雜也或許情境不需要用到這樣的原生操作。ORM 的便利性使得很多情況下我們能直觀而快速地取得資料庫的資料。" data-gatsby-head="true"/><meta name="og:title" content="Next-generation ORM：Prisma - Blog by Shelly Wu" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="經常寫 Node 應用程式的人通常免不了要和 ORM 打交道，畢竟寫原生 SQL 對於大部分的人會比較複雜也或許情境不需要用到這樣的原生操作。ORM 的便利性使得很多情況下我們能直觀而快速地取得資料庫的資料。" data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.2ccffdad1682a3257a62.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:#fff;--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#eaeaeb;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#eaeaeb;--color-page-background:#fff;--color-sidebar-border:#eaeaeb;--color-sidebar-border-fade:#fff;--color-contacts-border:#eaeaeb;--color-button-border:#eaeaeb;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#5c92ff}.dark :after,.dark :before,:root.dark{--color-white:#fff;--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#191d24;--color-typographic-base-font:#fff;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:#fff;--color-theme-switcher:#eaeaeb;--color-theme-switcher-hover:#5c92ff}html{font-size:100}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}body,h1,h2,h3,h4,h5,h6{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{background-image:linear-gradient(180deg,transparent 1px,transparent 11px,#242933 0,#242933 15px,transparent 0,transparent 26px);background-size:100% 26px;color:var(--color-typographic-base-font);height:26px;margin:52px auto;width:100px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{font-style:italic;padding:0;text-align:center}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:var(--color-prism-background)}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83;cursor:help}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:13px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid #242933;color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{font-size:16px;line-height:26px;margin-bottom:19.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:var(--color-typographic-base-font);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{margin:0 13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#5c92ff}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid #5c92ff;color:var(--color-primary)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Button-module--button--b1113{border:1px solid var(--color-button-border);border-radius:20px;color:var(--color-button-color);display:inline-block;font-size:16px;font-weight:400;height:40px;line-height:40px;margin-left:auto;margin-right:auto;padding:0 26px;text-align:center;text-decoration:none}.Button-module--button--b1113:focus,.Button-module--button--b1113:hover{color:#5c92ff}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1em;line-height:1em;text-align:center;text-transform:none;width:1em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:13px 0;max-width:165px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;border:1px solid var(--color-contacts-border);border-radius:50%;display:flex;height:40px;justify-content:center;line-height:40px;margin:6.5px;padding:0;text-align:center;width:40px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Copyright-module--copyright--2c602{color:#7f8ba4;font-size:14px}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid #5c92ff;color:#5c92ff}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Sidebar-module--sidebar--1bfa1{width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}.Author-module--author--1c58d{border-top:1px solid var(--color-page-border);line-height:26px;margin-bottom:52px;margin-top:26px;max-width:640px;padding-top:26px}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647{display:block;text-decoration:underline}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:focus,.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:hover{color:var(--color-typographic-link-s-font)}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:945px;padding:0 13px}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:26px auto 0;max-width:640px;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:39px;margin-top:58.5px}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Meta-module--meta--dae0a .Meta-module--date--4d30d{font-style:italic}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{margin:0 auto;max-width:640px;padding:0 13px}.Post-module--post--3a994 .Post-module--buttons--2972d{align-items:center;display:flex;justify-content:center;margin:26px 0 0;text-align:center}.Post-module--post--3a994 .Post-module--buttons--2972d .Post-module--buttonArticles--d793a{margin:0 13px 0 0}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}.Post-module--post--3a994 .Post-module--buttons--2972d{left:30px;margin:0 13px 0 0;max-width:none;position:fixed;top:30px}}</style><title data-gatsby-head="true">Next-generation ORM：Prisma - Blog by Shelly Wu</title><link rel="alternate" type="application/rss+xml" title="Blog by Shelly Wu" href="/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-73379983-2"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-73379983-2', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=7c5b6488cadf9657adae21d605ca9908" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=7c5b6488cadf9657adae21d605ca9908"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Post-module--post--3a994"><div class="Post-module--buttons--2972d"><a class="Button-module--button--b1113 Post-module--buttonArticles--d793a" href="/">All Articles</a></div><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">Next-generation ORM：Prisma</h1><div class="Content-module--body--726c2"><ul>
+<li><a href="#next-generation-orm-prisma">Next-generation ORM：Prisma</a></li>
+<li><a href="#what-is-prisma">What is Prisma?</a></li>
+<li><a href="#why-prisma">Why Prisma ?</a></li>
+</ul>
+<h2 id="next-generation-ormprisma" style="position:relative;"><a href="#next-generation-ormprisma" aria-label="next generation ormprisma permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next-generation ORM：Prisma</h2>
+<p>經常寫 Node 應用程式的人通常免不了要和 ORM 打交道，畢竟寫原生 SQL 對於大部分的人會比較複雜也或許情境不需要用到這樣的原生操作。ORM 的便利性使得很多情況下我們能直觀而快速地取得資料庫的資料。</p>
+<h2 id="what-is-prisma" style="position:relative;"><a href="#what-is-prisma" aria-label="what is prisma permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>What is Prisma?</h2>
+<p>Prisma 是開源程式，是在 NodeJS 社群中的 ORM，老牌的 ORM 像是 TypeORM、MikroORM 或是 MongoDB 專用的 ORM mongoose。</p>
+<p>Web 的應用開發過程中，需要花費大量時間與關連式資料庫操作，需要花很多時來調適 SQL 查詢語句，Prisma 則是提供一套簡潔的 API，可以更加方便操作資料庫，不僅提供了操作資料庫的 API，還可以依照需求，透過工具組合來建構 Rest API 或是 GraphQL，支援了多種資料庫串接，包含 PostgreSQL, MySQL, SQLite, MongoDB, CrockoachDB 與 MSSQL 。</p>
+<p>包含了以下</p>
+<ul>
+<li><strong>Prisma Client：Auto-generated and type-safe query builder for Node.js &#x26; TypeScript</strong></li>
+<li><strong>Prisma Migrate：Migration system</strong></li>
+<li><strong>Prisma Studio： 資料庫的 GUI 介面</strong></li>
+</ul>
+<h2 id="why-prisma" style="position:relative;"><a href="#why-prisma" aria-label="why prisma permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Why Prisma?</h2>
+<ol>
+<li><strong>Thinking in objects instead of mapping relational data</strong></li>
+<li><strong>Queries not classes to avoid complex model objects</strong></li>
+<li><strong>Single source of truth</strong> for database and application models</li>
+<li><strong>Healthy constraints</strong> that prevent common pitfalls and antipatterns</li>
+<li><strong>An abstraction that makes the right thing easy</strong></li>
+<li><strong>Type-safe database queries</strong> that can be validated at compile time</li>
+<li><strong>Auto-completion in code editors</strong> instead of needing to look up documentation</li>
+</ol>
+<h2 id="orm-object-relational-mapping" style="position:relative;"><a href="#orm-object-relational-mapping" aria-label="orm object relational mapping permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>ORM( Object Relational Mapping)</h2>
+<p>資料庫與程式之間做了一層對應，與資料庫的語法都是使用 ORM 的語法，ORM 換轉換成 SQL 去執行，所以在操作上並非直接去寫原始的 SQL。</p>
+<p><strong>原始 SQL：完全控制，生產率低</strong></p>
+<p>可以完全對資料庫發送純 SQL 字符串，才操作資料庫，但直接下 SQL 指令很麻煩，並且會帶來大量的開銷，所以對程式的生產力降低。</p>
+<p><strong>SQL 查詢構建器(SQL query builders)：高控制，中等生產力</strong></p>
+<p>保留高控制並提供更高生產力的常見解決方案是使用 SQL 查詢構建器，像是 knex.js，仍然需要根據 SQL 來存取資料，還是會有將關係資料轉換成物件對象的成本。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/6669817e16004ac8d4fb0c213321a228/d4e7f/prisma6.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABYlAAAWJQFJUiTwAAAA8klEQVQoz6WRy4rDMAxF/R2t37b8SpyWTruZ//+vO0gQyCJQwiyOJLB1dWWr7D0Wqhi5YFaP6CycvsMbfQnu4V7FYVsWPPvEo3cEay4L7vc5Kxb4vF+YbeA1nv9yyFkFZ+GtRdAGwZy7uzJAFacxyYNqQs5Bmq2+Sf4mdHauOHxawM9a0HpFSVHIwQu78BmnDoPRyN4I/H4peiTPOETv5JOYvYFrvse1vd+E4xBFzuB3Jrw3Ql8bRs/otWBbBtbesLSKx1ylZuboeG4ToxbUnNAog2IQxKHVGiNarBRAKaJTRiska/dCsjZn5uiUYafMcYs/9QD3y9HYowAAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/6669817e16004ac8d4fb0c213321a228/8ac56/prisma6.webp 240w,
+/static/6669817e16004ac8d4fb0c213321a228/d3be9/prisma6.webp 480w,
+/static/6669817e16004ac8d4fb0c213321a228/e46b2/prisma6.webp 960w,
+/static/6669817e16004ac8d4fb0c213321a228/3437f/prisma6.webp 1416w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/6669817e16004ac8d4fb0c213321a228/8ff5a/prisma6.png 240w,
+/static/6669817e16004ac8d4fb0c213321a228/e85cb/prisma6.png 480w,
+/static/6669817e16004ac8d4fb0c213321a228/d9199/prisma6.png 960w,
+/static/6669817e16004ac8d4fb0c213321a228/d4e7f/prisma6.png 1416w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/6669817e16004ac8d4fb0c213321a228/d9199/prisma6.png"
+            alt="prisma6"
+            title="prisma6"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><strong>ORM：更少的控制，更高的生產力</strong></p>
+<p>ORM 存在主要是為了替程式設計師架起資料庫中間的橋樑，可以達到更有效的訪問。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ff9c8618fde6abf539a53712c4ddb9ce/2215f/prisma5.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 71.66666666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAABYlAAAWJQFJUiTwAAABaUlEQVQ4y5WTyXLCMBBE+f9vyyEkUARvWmazgUoOnHLqlOQFA3ZSObRHVZKeu6XRRlVBxAiRkMYikut8nGokArM8rXnUZg2Y6jh2PuBt/4HDsbybXwfyMlA1QRUxEnyIWWnt4w//ARw3Kk6qaLMM9qfDx8gJkhfI5ORw7lCr4uA9GqLV2Jt00LULd8AMy9XAYlDr8P55RmmKnXOoiCaXc/VAEVSNX3Bo+FSHsziIK9AxDZH1FnkRyIKidovAq1X44gJyfIWQ753b0FJq0Cydatq7SZ/Gx6fIfW3BahBrB0iL62WHi+xA1RbcbMH1FlS+gN0+g/OlJJd3wPk5TnH62+46gSlByA0KvXum9bb5TcQCtt61tN3gfhZ5BKbmNdPVJ5UvQhUnM3yHgJN3sKJAW5bDmfdnPwEbHxCHfhwVF8YUGScfQM7DnIN5f+vbEZijEN+UHBOjbgKKyk1PbpwPLIgskBzdZn2r+AGWfwRRTochcAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ff9c8618fde6abf539a53712c4ddb9ce/8ac56/prisma5.webp 240w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/d3be9/prisma5.webp 480w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/e46b2/prisma5.webp 960w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/f992d/prisma5.webp 1440w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/10263/prisma5.webp 1548w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ff9c8618fde6abf539a53712c4ddb9ce/8ff5a/prisma5.png 240w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/e85cb/prisma5.png 480w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/d9199/prisma5.png 960w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/07a9c/prisma5.png 1440w,
+/static/ff9c8618fde6abf539a53712c4ddb9ce/2215f/prisma5.png 1548w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ff9c8618fde6abf539a53712c4ddb9ce/d9199/prisma5.png"
+            alt="prisma5"
+            title="prisma5"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="特點" style="position:relative;"><a href="#%E7%89%B9%E9%BB%9E" aria-label="特點 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>特點</h3>
+<ol>
+<li>Schema 定義，我們所認識的 ORM 都是使用 JS/TS 進行定義的，而 Prisma 則使用<code class="language-text">.prisma</code> 文件來撰寫表的結構，以下用 Sequelize 與 Prisma model 的示例</li>
+</ol>
+<p><strong>Sequelize model</strong></p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+User<span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    <span class="token literal-property property">user_id</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">INTEGER</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">primaryKey</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">autoIncrement</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">name</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">STRING</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">type</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">STRING</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">unique</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token literal-property property">isAdmin</span><span class="token operator">:</span> Sequelize<span class="token punctuation">.</span><span class="token constant">BOOLEAN</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> sequelize<span class="token punctuation">,</span> <span class="token literal-property property">modelName</span><span class="token operator">:</span> <span class="token string">"user"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<p><strong>Prisma Schema model</strong></p>
+<p>簡單的 prisma 定義如下</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">model User <span class="token punctuation">{</span>
+  user_id Int     @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">autoincrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  name    String<span class="token operator">?</span>
+  email   String  @unique
+  isAdmin Boolean @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="2">
+<li>Typescript 類型定義更加全面，包含查詢參數、操作符參數、級聯參數、返回結果等。</li>
+<li>更加全面的操作符 contains、startsWith、endsWith</li>
+<li>全面的工具涵蓋資料庫的流程
+<ol>
+<li>querying （<a href="https://www.prisma.io/docs/concepts/components/prisma-client" target="_blank" rel="nofollow noopener noreferrer">Prisma Client</a>）</li>
+<li>data modeling (<a href="https://www.prisma.io/docs/concepts/components/prisma-schema" target="_blank" rel="nofollow noopener noreferrer">Prisma schema</a>)</li>
+<li>migrations (<a href="https://www.prisma.io/docs/concepts/components/prisma-migrate" target="_blank" rel="nofollow noopener noreferrer">Prisma Migrate</a>)</li>
+<li>prototyping via prisma db push</li>
+<li>seeding via prisma db seed</li>
+<li>visual viewing and editing （with <a href="https://prisma.io/studio" target="_blank" rel="nofollow noopener noreferrer">Prisma Studio</a>）</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h3 id="quick-start" style="position:relative;"><a href="#quick-start" aria-label="quick start permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Quick start</h3>
+<p>Node.js version 14.17.0 or higher</p>
+<p>Access to a MongoDB 4.2+</p>
+<h3 id="set-up-package-environment" style="position:relative;"><a href="#set-up-package-environment" aria-label="set up package environment permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set up package environment</h3>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"># 初始化專案
+npm init -y
+npm install prisma typescript ts-node @types/node --save-dev
+
+# Prisma CLI
+npx prisma
+npx prisma init</code></pre></div>
+<p><code class="language-text">tsconfig.json</code></p>
+<div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"compilerOptions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"sourceMap"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"outDir"</span><span class="token operator">:</span> <span class="token string">"dist"</span><span class="token punctuation">,</span>
+    <span class="token property">"strict"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">"lib"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"esnext"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"esModuleInterop"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<h3 id="connect-to-db" style="position:relative;"><a href="#connect-to-db" aria-label="connect to db permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Connect to DB</h3>
+<p>在<code class="language-text">.env</code>檔案裡修改連接資訊</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">DATABASE_URL = 'mongodb://localhost:27017/prisma';</code></pre></div>
+<h3 id="set-up-schema" style="position:relative;"><a href="#set-up-schema" aria-label="set up schema permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set up schema</h3>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">generator client <span class="token punctuation">{</span>
+  provider <span class="token operator">=</span> <span class="token string">"prisma-client-js"</span>
+<span class="token punctuation">}</span>
+
+datasource db <span class="token punctuation">{</span>
+  provider <span class="token operator">=</span> <span class="token string">"mongodb"</span>
+  url      <span class="token operator">=</span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">"DATABASE_URL"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+model Post <span class="token punctuation">{</span>
+  id       String    @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">auto</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> @<span class="token function">map</span><span class="token punctuation">(</span><span class="token string">"_id"</span><span class="token punctuation">)</span> @db<span class="token punctuation">.</span>ObjectId
+  slug     String    @unique
+  title    String
+  body     String
+  comments Comment<span class="token punctuation">[</span><span class="token punctuation">]</span>
+  author   User      @<span class="token function">relation</span><span class="token punctuation">(</span>fields<span class="token operator">:</span> <span class="token punctuation">[</span>authorId<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token literal-property property">references</span><span class="token operator">:</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  authorId String    @db<span class="token punctuation">.</span>ObjectId
+<span class="token punctuation">}</span>
+
+model Comment <span class="token punctuation">{</span>
+  id      String @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">auto</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> @<span class="token function">map</span><span class="token punctuation">(</span><span class="token string">"_id"</span><span class="token punctuation">)</span> @db<span class="token punctuation">.</span>ObjectId
+  post    Post   @<span class="token function">relation</span><span class="token punctuation">(</span>fields<span class="token operator">:</span> <span class="token punctuation">[</span>postId<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token literal-property property">references</span><span class="token operator">:</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  postId  String @db<span class="token punctuation">.</span>ObjectId
+  comment String
+<span class="token punctuation">}</span>
+
+model User <span class="token punctuation">{</span>
+  id    String  @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">auto</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> @<span class="token function">map</span><span class="token punctuation">(</span><span class="token string">"_id"</span><span class="token punctuation">)</span> @db<span class="token punctuation">.</span>ObjectId
+  email String  @unique
+  name  String<span class="token operator">?</span>
+  posts Post<span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/52ab5/prisma4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 42.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABSklEQVQoz6WQWW/jMAyE8///XpttH9qsD1k+ctiBZevWV0hGF3lfAQMNh+KQ1CmEyLwsPB4z83zc/3NOIQRa0fF9qaiqBiEk66rQWrPtO1ob9l2j1FY0tW1s286+H1iVKvlda7JXMbzd7vTDWIzH6UrXSeqmpe9HpOxpW1HinK/qFikHmrajkz11IwpyLjcthrIfaIRkut0xxmCdQxuLDxHnPMZanHNY6w7ufeFZy/WZ5+m995yOzRPJGPDuNwRnSTZrFoIvcnQWYijch1CMM8r73z8s9THi6hpXN7h9xo5/MPIN058x/XuBnWvM85OH6vhcBef5wsez4rz85W2+cLVLMT4ME/hhwI8T3ij8OuKWDjN94Z4Sryb89sAqwWoWRrPQbVe+FkG7jvT6ztOplwlTIuUVQ/g3em4S88ovJ7yul0BbQ4zxpSbxA86bafUaoS82AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/8ac56/prisma4.webp 240w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/d3be9/prisma4.webp 480w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/e46b2/prisma4.webp 960w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/9427e/prisma4.webp 1420w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/8ff5a/prisma4.png 240w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/e85cb/prisma4.png 480w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/d9199/prisma4.png 960w,
+/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/52ab5/prisma4.png 1420w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a8dd2c2bb141d2cc4ddccaea4d958d0d/d9199/prisma4.png"
+            alt="prisma4"
+            title="prisma4"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="install-prisma-client" style="position:relative;"><a href="#install-prisma-client" aria-label="install prisma client permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Install Prisma Client</h3>
+<p>用來操作資料庫的 prisma 套件</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">npm install @prisma/client</code></pre></div>
+<p>install command automatically invokes <strong><code class="language-text">prisma generate</code></strong></p>
+<p>如果有更改表的結構，需要先執行<code class="language-text">prisma generate</code> 讓 Prisma Client 可以對應到 model。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/05b7fff4ebae3a2eb8214047b990daba/322c5/prisma3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 50%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAAB8UlEQVQoz42S20sUYRiH9w/upqAiOwihkniItAUPlYEVdNmFYCSi4pqru7q64257mJ35zjPOzqz1DzwxI4IXEV48/PhePh5+vLwlay2tdgelFDYIML5fYD2PoZSkUvHHWVIlGQpRzOxgUPy5FIIoDLC+z+raV47rDUpaG04bTcJQYHOpFFitcL0uqRSFpF6p4nyfTEoSpTBK4bTm+KhOp93BacXswnsqhzVKQkga5xf0+gNMv8Vl/5yrKGBk+4yiEOF3eT61iNfuEidDtIsx1pEkCQvL62z+2CXNUubLHzmo1igZYwhCgdIaa3TR7iYjZxFCMDGzROusiu7VCNp1hN8mtgHllXW+b+2RpgmzCx84yBvmO3TOkqe5jclnrtjtoxczNJsesRog+xcYJUliR3nlE5tbu2TZkInZJfYPjq8b3mBvkb+dtYXw/pNX1M+bDJwi0ApfCtxlxNTcMhub24yylMm55Wth3uxf3BY+GJumetagawZ0Q59fQR8VG55NvuHbxhZXVxnjU4vsVap3FD6dxvNaZElCZC2xs4zSIUvvvrC9U+H3KGXs5Wt29w/vJrz3cILqiYe0MZ3QcNLVtHxFL9T4wjBQjsfjc+zs/fy/ME+tNfNv1/Dye4sipDaEyiCUQWmDMrY4o/LqZ45qp/wFsca8wz86H8wAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/05b7fff4ebae3a2eb8214047b990daba/8ac56/prisma3.webp 240w,
+/static/05b7fff4ebae3a2eb8214047b990daba/d3be9/prisma3.webp 480w,
+/static/05b7fff4ebae3a2eb8214047b990daba/e46b2/prisma3.webp 960w,
+/static/05b7fff4ebae3a2eb8214047b990daba/f992d/prisma3.webp 1440w,
+/static/05b7fff4ebae3a2eb8214047b990daba/882b9/prisma3.webp 1920w,
+/static/05b7fff4ebae3a2eb8214047b990daba/acf52/prisma3.webp 2286w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/05b7fff4ebae3a2eb8214047b990daba/8ff5a/prisma3.png 240w,
+/static/05b7fff4ebae3a2eb8214047b990daba/e85cb/prisma3.png 480w,
+/static/05b7fff4ebae3a2eb8214047b990daba/d9199/prisma3.png 960w,
+/static/05b7fff4ebae3a2eb8214047b990daba/07a9c/prisma3.png 1440w,
+/static/05b7fff4ebae3a2eb8214047b990daba/29114/prisma3.png 1920w,
+/static/05b7fff4ebae3a2eb8214047b990daba/322c5/prisma3.png 2286w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/05b7fff4ebae3a2eb8214047b990daba/d9199/prisma3.png"
+            alt="prisma3"
+            title="prisma3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="create-and-query-users" style="position:relative;"><a href="#create-and-query-users" aria-label="create and query users permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create and query users</h3>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> PrismaClient <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@prisma/client"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> prisma <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PrismaClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> prisma<span class="token punctuation">.</span><span class="token function">$connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">await</span> prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Rich"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">"hello@prisma.com"</span><span class="token punctuation">,</span>
+      <span class="token literal-property property">posts</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token literal-property property">create</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token literal-property property">title</span><span class="token operator">:</span> <span class="token string">"My first post"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">body</span><span class="token operator">:</span> <span class="token string">"Lots of really interesting stuff"</span><span class="token punctuation">,</span>
+          <span class="token literal-property property">slug</span><span class="token operator">:</span> <span class="token string">"my-first-post"</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> allUsers <span class="token operator">=</span> <span class="token keyword">await</span> prisma<span class="token punctuation">.</span>user<span class="token punctuation">.</span><span class="token function">findMany</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>allUsers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> prisma<span class="token punctuation">.</span><span class="token function">$disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> prisma<span class="token punctuation">.</span><span class="token function">$disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    process<span class="token punctuation">.</span><span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
+<h3 id="prisma-migration" style="position:relative;"><a href="#prisma-migration" aria-label="prisma migration permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prisma Migration</h3>
+<p>Migration 是用來描述資料庫結構是什麼樣子，會隨著專案開發中逐漸增加，使用 Migration 進入版本控制後，整個資料庫的設計過程一目瞭然，方便一起協作。</p>
+<ol>
+<li>建立好資料結構後</li>
+</ol>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">generator client <span class="token punctuation">{</span>
+  provider <span class="token operator">=</span> <span class="token string">"prisma-client-js"</span>
+<span class="token punctuation">}</span>
+
+datasource db <span class="token punctuation">{</span>
+  provider <span class="token operator">=</span> <span class="token string">"sqlserver"</span>
+  url      <span class="token operator">=</span> <span class="token function">env</span><span class="token punctuation">(</span><span class="token string">"DATABASE_URL"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+model Post <span class="token punctuation">{</span>
+  id        Int      @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">autoincrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  createdAt DateTime @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  updatedAt DateTime @updatedAt
+  title     String   @db<span class="token punctuation">.</span><span class="token function">VarChar</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>
+  content   String<span class="token operator">?</span>
+  published Boolean  @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  author    User     @<span class="token function">relation</span><span class="token punctuation">(</span>fields<span class="token operator">:</span> <span class="token punctuation">[</span>authorId<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token literal-property property">references</span><span class="token operator">:</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  authorId  Int
+<span class="token punctuation">}</span>
+
+model Profile <span class="token punctuation">{</span>
+  id     Int     @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">autoincrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  bio    String<span class="token operator">?</span>
+  user   User    @<span class="token function">relation</span><span class="token punctuation">(</span>fields<span class="token operator">:</span> <span class="token punctuation">[</span>userId<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token literal-property property">references</span><span class="token operator">:</span> <span class="token punctuation">[</span>id<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  userId Int     @unique
+<span class="token punctuation">}</span>
+
+model User <span class="token punctuation">{</span>
+  id      Int      @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">autoincrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  email   String   @unique
+  name    String<span class="token operator">?</span>
+  posts   Post<span class="token punctuation">[</span><span class="token punctuation">]</span>
+  profile Profile<span class="token operator">?</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="2">
+<li>執行第一次的 migration</li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">prisma migrate dev --name init</code></pre></div>
+<ol start="3">
+<li>結果顯示</li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Applying migration `20220803160039_init`
+
+The following migration(s) have been created and applied from new schema changes:
+
+migrations/
+  └─ 20220803160039_init/
+    └─ migration.sql</code></pre></div>
+<ol start="4">
+<li>新增 User 表的一個欄位</li>
+</ol>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">model User <span class="token punctuation">{</span>
+  id       Int    @id @<span class="token keyword">default</span><span class="token punctuation">(</span><span class="token function">autoincrement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  jobTitle String
+  name     String
+  posts    Post<span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre></div>
+<ol start="5">
+<li>執行第二次的 migration</li>
+</ol>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">prisma migrate dev <span class="token operator">--</span>name added_job_title</code></pre></div>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">Applying migration <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">20220803160346_added_job_title</span><span class="token template-punctuation string">`</span></span>
+
+The following <span class="token function">migration</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> have been created and applied from <span class="token keyword">new</span> <span class="token class-name">schema</span> <span class="token literal-property property">changes</span><span class="token operator">:</span>
+
+migrations<span class="token operator">/</span>
+  └─ 20220803160346_added_job_title<span class="token operator">/</span>
+    └─ migration<span class="token punctuation">.</span>sql
+
+Your database is now <span class="token keyword">in</span> sync <span class="token keyword">with</span> your schema<span class="token punctuation">.</span></code></pre></div>
+<p>DB 會有個表來呈現並檢查 migration 的過程<code class="language-text">_prisma_migrations</code> 見下圖</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d5d9c80be2c19f0904da6a2f2299b6db/fb937/prisma2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 16.666666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAADCAYAAACTWi8uAAAACXBIWXMAABYlAAAWJQFJUiTwAAAArElEQVQI1z2NOw6DMBBEOQgYG4QAARLGAREMGPIpkzZ97n+HF9lFitWMdvbNRvv5ZH28MPaO3RzbtjEMhuM4mOcr0zRxnjesXVmWBa0HjDE450LuZ99dYPxN1JgV+/6i7x+6YeJyMZRlSd/3dF1HVdWM4xh827ZIKcnznKZpEEJQ1zVa66BKKSKZCopcIUWMkpKiKEjTNEBZloUCv/PeA0mShCLv4zj+P/Dqsx909lvWaUU5agAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d5d9c80be2c19f0904da6a2f2299b6db/8ac56/prisma2.webp 240w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/d3be9/prisma2.webp 480w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/e46b2/prisma2.webp 960w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/f992d/prisma2.webp 1440w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/db7e9/prisma2.webp 1820w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d5d9c80be2c19f0904da6a2f2299b6db/8ff5a/prisma2.png 240w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/e85cb/prisma2.png 480w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/d9199/prisma2.png 960w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/07a9c/prisma2.png 1440w,
+/static/d5d9c80be2c19f0904da6a2f2299b6db/fb937/prisma2.png 1820w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d5d9c80be2c19f0904da6a2f2299b6db/d9199/prisma2.png"
+            alt="prisma2"
+            title="prisma2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="prisma-studio" style="position:relative;"><a href="#prisma-studio" aria-label="prisma studio permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prisma Studio</h3>
+<p>Prisma 有提供可以查看 DB 結構的 GUI 介面，直接執行以下指令。</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">npx prisma studio</code></pre></div>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8923fa46c27aee864c9d0d3fa452fae3/0ffd9/prisma1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 27.916666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAABYlAAAWJQFJUiTwAAABLElEQVQY022My07CYBCF+wCW0pb2L7dyaSMQqcWWQqvhkoAICLhg4UZi4saV77/8TAuaxrg4OfPNmTNSx0swrAZmufUrq+ZQEjayYlIoipzOrKgWiiouslDSvVzEKFlIq5d3lvsTy8Mp88Xujc3xg/nmlWiyZTzbE02eGU13xPNDNg/iFcH9mvBhy2C8ZDA7cnf4wt9+Il3fjHB7Q7pejB/NSdnphvjRjH4woePFeOEUfzjLsu5tQpg8Zu72IoJ4gZ+saQdPuOEKSdGqyGoZzbAxK20KaoWCWkZUHco1lzTXTRtdNJCLFopexXY8VMPmShHU232qdge5UEIpCiRdNNGtFqlrZgNdtDJO5zM30bKsSelypxr1zFNOH6fKMquFpOeKP0/znNff/X+9bydUqZ88+c/iAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8923fa46c27aee864c9d0d3fa452fae3/8ac56/prisma1.webp 240w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/d3be9/prisma1.webp 480w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/e46b2/prisma1.webp 960w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/f992d/prisma1.webp 1440w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/882b9/prisma1.webp 1920w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/323b3/prisma1.webp 2558w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8923fa46c27aee864c9d0d3fa452fae3/8ff5a/prisma1.png 240w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/e85cb/prisma1.png 480w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/d9199/prisma1.png 960w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/07a9c/prisma1.png 1440w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/29114/prisma1.png 1920w,
+/static/8923fa46c27aee864c9d0d3fa452fae3/0ffd9/prisma1.png 2558w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8923fa46c27aee864c9d0d3fa452fae3/d9199/prisma1.png"
+            alt="prisma1"
+            title="prisma1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="參考資料" style="position:relative;"><a href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99" aria-label="參考資料 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>參考資料</h3>
+<p><a href="https://www.prisma.io/" target="_blank" rel="nofollow noopener noreferrer">Prisma 官網</a></p>
+<p><a href="https://www.prisma.io/docs/concepts/database-connectors/mongodb#error-transactions-are-not-supported-by-this-deployment" target="_blank" rel="nofollow noopener noreferrer">MongoDB database connector</a></p>
+<p><a href="https://99designs.com/blog/engineering/schema-driven-development/" target="_blank" rel="nofollow noopener noreferrer">Schema-driven development in 2021 - 99designs</a></p>
+<p><a href="https://formidable.com/blog/2021/prisma-orm/" target="_blank" rel="nofollow noopener noreferrer">What is Prisma and Why Do We Need Another ORM?</a></p>
+<p><a href="https://blog.logrocket.com/code-first-vs-schema-first-development-graphql/" target="_blank" rel="nofollow noopener noreferrer">Code-first vs. schema-first development in GraphQL - LogRocket Blog</a></p></div></div></div><div class="Post-module--footer--f8705"><div class="Meta-module--meta--dae0a"><p class="Meta-module--date--4d30d">Published<!-- --> <!-- -->Jan 2, 2023</p></div><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/orm/">ORM</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/prisma/">Prisma</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/web-development/">Web Development</a></li></ul></div><div class="Author-module--author--1c58d"><p class="Author-module--bio--08950">喜歡徜徉在程式與思考中，享受這樣的寧靜。工作期間的每一次分享知識，讓自己的對知識點更加深入。在工作閒暇之餘積極參與研討會或是加入開發社群的與大家交流技術。<a class="Author-module--twitter--90647" href="https://www.twitter.com/#" rel="noopener noreferrer" target="_blank"><strong>Shelly Wu</strong> on Twitter</a></p></div></div><div class="Post-module--comments--d3b99"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/2023-01-01---Next-generation-ORM-Prisma";window.___webpackCompilationHash="48a93f1601fb276d9c32";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-1c402d9cef86f378591d.js"],"app":["/app-84891df63af51ecf5d2c.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-100c9cc6969fe39ed513.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-822621f50a1469c88a84.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-8253bcdb68fa06864d41.js"],"component---src-templates-index-template-index-template-tsx":["/component---src-templates-index-template-index-template-tsx-1c4cb9c08f72c8193773.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-9283e4509203f3a8a8e0.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-7e15399e26da86fcb38e.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-bcaf8627c0ccf04eebae.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-bd32ed32480a528308ad.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-be4fbda22e5556fb4eb0.js"]};/*]]>*/</script><script src="/polyfill-1c402d9cef86f378591d.js" nomodule=""></script><script src="/app-84891df63af51ecf5d2c.js" async=""></script><script src="/b3a13d7d-18c8c5498ba8a0981777.js" async=""></script><script src="/framework-de9d6b93c2fe39840233.js" async=""></script><script src="/webpack-runtime-34a7fecb394e65de7bae.js" async=""></script></body></html>
