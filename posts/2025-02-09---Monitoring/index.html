@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 4.25.5"/><meta name="description" content="特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。" data-gatsby-head="true"/><meta name="twitter:card" content="summary_large_image" data-gatsby-head="true"/><meta name="twitter:title" content="Create a React application - Blog by Shelly Wu" data-gatsby-head="true"/><meta name="twitter:description" content="特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。" data-gatsby-head="true"/><meta name="og:title" content="Create a React application - Blog by Shelly Wu" data-gatsby-head="true"/><meta name="og:type" content="website" data-gatsby-head="true"/><meta name="og:description" content="特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。" data-gatsby-head="true"/><meta name="theme-color" content="hsl(31, 92%, 62%)"/><style data-href="/styles.2ccffdad1682a3257a62.css" data-identity="gatsby-global-css">:after,:before,:root{--color-white:#fff;--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#eaeaeb;--color-typographic-base-font:#242933;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#eaeaeb;--color-page-background:#fff;--color-sidebar-border:#eaeaeb;--color-sidebar-border-fade:#fff;--color-contacts-border:#eaeaeb;--color-button-border:#eaeaeb;--color-button-color:#242933;--color-theme-switcher:#3f485a;--color-theme-switcher-hover:#5c92ff}.dark :after,.dark :before,:root.dark{--color-white:#fff;--color-primary:#5c92ff;--color-secondary:#f7a145;--color-prism-background:#191d24;--color-typographic-base-font:#fff;--color-typographic-link-p-font:#5c92ff;--color-typographic-link-s-font:#f7a145;--color-page-border:#3f485a;--color-page-background:#242933;--color-sidebar-border:#3f485a;--color-sidebar-border-fade:#242933;--color-contacts-border:#3f485a;--color-button-border:#3f485a;--color-button-color:#fff;--color-theme-switcher:#eaeaeb;--color-theme-switcher-hover:#5c92ff}html{font-size:100}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;background:var(--color-page-background);color:var(--color-typographic-base-font);font-size:16px;line-height:1.625;margin:0 0 0 calc(100vw - 100%);text-rendering:optimizelegibility}body,h1,h2,h3,h4,h5,h6{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif}h1,h2,h3,h4,h5,h6{font-weight:600}h1{font-size:40px;line-height:52px;margin-bottom:26px;margin-top:104px}h2{font-size:27px;line-height:39px}h2,h3{margin-bottom:13px;margin-top:52px}h3{font-size:22px;line-height:26px}h4{font-size:19.2px;margin-top:39px}h4,h5{line-height:26px;margin-bottom:13px}h5,h6{font-size:16px;margin-top:65px}h6{line-height:26px;margin-bottom:13px}img{max-width:100%}hr,img{border:0;display:block}hr{background-image:linear-gradient(180deg,transparent 1px,transparent 11px,#242933 0,#242933 15px,transparent 0,transparent 26px);background-size:100% 26px;color:var(--color-typographic-base-font);height:26px;margin:52px auto;width:100px}a{color:var(--color-typographic-link-p-font);text-decoration:none}a:active,a:focus,a:hover{color:var(--color-typographic-link-s-font)}b,strong{font-weight:600}ul{list-style:square;margin-bottom:26px}ul li{margin-bottom:10px;padding:0 5px}p{line-height:26px;margin-bottom:26px}blockquote{font-style:italic;padding:0;text-align:center}figure{display:block;height:auto;width:100%}figcaption{color:var(--color-typographic-base-font);font-size:14px;font-style:italic;line-height:19.5px;margin-bottom:0;margin-top:6.5px;text-align:center}@media screen and (min-width:685px){figure.float-left,figure.float-right{max-width:310px;padding:0 26px}.float-right{float:right}.float-left{float:left}}code[class*=language-],pre[class*=language-]{word-wrap:normal;color:#657b83;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;white-space:pre;word-break:normal;word-spacing:normal}pre[class*=language-]{border-radius:.3em;margin:.5em 0;overflow:auto;padding:1em}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:var(--color-prism-background)}:not(pre)>code[class*=language-]{border-radius:.3em;padding:.1em}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#073642}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#93a1a1}.token.punctuation{color:#586e75}.namespace{opacity:.7}.token.boolean,.token.constant,.token.deleted,.token.number,.token.property,.token.symbol,.token.tag{color:#268bd2}.token.attr-name,.token.builtin,.token.char,.token.inserted,.token.selector,.token.string,.token.url{color:#2aa198}.token.entity{background:#eee8d5;color:#657b83;cursor:help}.token.atrule,.token.attr-value,.token.keyword{color:#859900}.token.class-name,.token.function{color:#b58900}.token.important,.token.regex,.token.variable{color:#cb4b16}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.Feed-module--feed--a6204 .Feed-module--item--c7a63{margin-bottom:32.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63:last-child{margin-bottom:13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f{font-size:27px;line-height:39px;margin-bottom:13px;margin-top:0}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b{color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--title--f252f .Feed-module--link--6123b:hover{border-bottom:1px solid #242933;color:var(--color-typographic-base-font)}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--description--57348{font-size:16px;line-height:26px;margin-bottom:19.5px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--time--72864{color:var(--color-typographic-base-font);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--divider--81a18{margin:0 13px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b{color:var(--color-secondary);font-size:14px;font-weight:600;text-transform:uppercase}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--meta--250c2 .Feed-module--category--59f58 .Feed-module--link--6123b:hover{color:#5c92ff}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e{color:var(--color-primary);font-size:16px}.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:focus,.Feed-module--feed--a6204 .Feed-module--item--c7a63 .Feed-module--more--51a4e:hover{border-bottom:1px solid #5c92ff;color:var(--color-primary)}.Layout-module--layout--2c933{margin-left:auto;margin-right:auto;max-width:1070px}.Layout-module--layout--2c933:before{content:"";display:table}.Layout-module--layout--2c933:after{clear:both;content:"";display:table}.Page-module--page--24e03{margin-bottom:52px}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:26px 19.5px 0}.Page-module--page--24e03 .Page-module--title--90338{font-size:40px;font-weight:600;line-height:52px;margin-bottom:37.7px;margin-top:0}.Page-module--page--24e03 .Page-module--body--561c4{font-size:16px;line-height:26px;margin:0 0 26px}@media screen and (min-width:685px){.Page-module--page--24e03{width:calc(58.275% - 12.5px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(12n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(12n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:32.5px 19.5px 0}}@media screen and (min-width:960px){.Page-module--page--24e03{width:calc(66.6% - 10px)}.Page-module--page--24e03:nth-child(1n){clear:none;float:left;margin-right:30px}.Page-module--page--24e03:last-child{margin-right:0}.Page-module--page--24e03:nth-child(3n){float:right;margin-right:0}.Page-module--page--24e03:nth-child(3n+1){clear:both}.Page-module--page--24e03 .Page-module--inner--4b31d{padding:39px 26px 0}}.Pagination-module--pagination--d61cb{display:flex;margin-top:52px}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b{text-align:left;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:focus,.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--previous--4a76b .Pagination-module--previousLink--5590d.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8{text-align:right;width:50%}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff{color:var(--color-secondary);font-size:26px;font-weight:700}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:focus,.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff:hover{color:var(--color-primary)}.Pagination-module--pagination--d61cb .Pagination-module--next--1cab8 .Pagination-module--nextLink--532ff.Pagination-module--disable--7e105{color:#3f485a;pointer-events:none}.Button-module--button--b1113{border:1px solid var(--color-button-border);border-radius:20px;color:var(--color-button-color);display:inline-block;font-size:16px;font-weight:400;height:40px;line-height:40px;margin-left:auto;margin-right:auto;padding:0 26px;text-align:center;text-decoration:none}.Button-module--button--b1113:focus,.Button-module--button--b1113:hover{color:#5c92ff}.ThemeSwitcher-module--themeSwitcher--8a77f{--color:var(--color-theme-switcher)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b{align-items:center;background:transparent;border:0;cursor:pointer;display:flex;justify-content:center;outline:0}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b svg{stroke:var(--color);pointer-events:none;transition:stroke .4s}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--button--7cb7b:hover{--color:var(--color-theme-switcher-hover)}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--moon--10537{stroke-dasharray:0 1px;opacity:0;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f .ThemeSwitcher-module--sun--2163a{stroke-dasharray:1px 1px;opacity:1;transition:stroke-dasharray .2s ease-in,opacity .4s ease-in}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--moon--10537{stroke-dasharray:1px 1px;opacity:1}.ThemeSwitcher-module--themeSwitcher--8a77f.ThemeSwitcher-module--dark--6db0c .ThemeSwitcher-module--sun--2163a{stroke-dasharray:0 1px;opacity:0}.Author-module--author--cbd31 .Author-module--photo--9787b{background-clip:padding-box;border-radius:50%;display:inline-block;height:75px;margin-bottom:0;width:75px}.Author-module--author--cbd31 .Author-module--photo--9787b img{border-radius:50%}.Author-module--author--cbd31 .Author-module--title--cf7e5{font-size:18px;font-weight:600;line-height:29.25px;margin:0}.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:focus,.Author-module--author--cbd31 .Author-module--title--cf7e5 .Author-module--link--09c17:hover{color:var(--color-typographic-base-font)}.Author-module--author--cbd31 .Author-module--subtitle--86ec5{color:#7f8ba4;line-height:26px;margin-bottom:26px}.Author-module--author--cbd31 .Author-module--titleContainer--4f576{align-items:center;display:flex;justify-content:space-between;margin:13px 0}.Icon-module--icon--1d7da{fill:currentcolor;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;speak:none;stroke:currentcolor;stroke-width:0;display:inline-block;font-style:normal;font-variant:normal;font-weight:400;height:1em;line-height:1em;text-align:center;text-transform:none;width:1em}.Contacts-module--contacts--09178{margin-bottom:26px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b{display:flex;flex-flow:row wrap;flex-grow:0;flex-shrink:0;list-style:none;margin:13px 0;max-width:165px;padding:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0{align-content:center;align-items:center;border:1px solid var(--color-contacts-border);border-radius:50%;display:flex;height:40px;justify-content:center;line-height:40px;margin:6.5px;padding:0;text-align:center;width:40px}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0:nth-child(3n+1){margin-left:0}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0{border:0;color:var(--color-typographic-base-font);cursor:pointer;display:flex}.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:focus,.Contacts-module--contacts--09178 .Contacts-module--list--9670b .Contacts-module--item--f9cb0 .Contacts-module--link--de1e0:hover{color:var(--color-typographic-link-p-font)}.Copyright-module--copyright--2c602{color:#7f8ba4;font-size:14px}.Menu-module--menu--113a9{margin-bottom:26px}.Menu-module--menu--113a9 .Menu-module--list--e1ae3{list-style:none;margin:0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679{margin:13px 0;padding:0}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02{border:0;color:var(--color-typographic-base-font);font-size:16px;font-weight:400}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:focus,.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02:hover{border-bottom:1px solid #5c92ff;color:#5c92ff}.Menu-module--menu--113a9 .Menu-module--list--e1ae3 .Menu-module--item--8b679 .Menu-module--link--a6f02.Menu-module--active--6cb74{border-bottom:1px solid var(--color-typographic-base-font);color:var(--color-typographic-base-font)}.Sidebar-module--sidebar--1bfa1{width:100%}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:26px 19.5px 0;position:relative}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{background:var(--color-sidebar-border);background:linear-gradient(to bottom,var(--color-sidebar-border) 0,var(--color-sidebar-border) 48%,var(--color-sidebar-border-fade) 100%)}@media screen and (min-width:685px){.Sidebar-module--sidebar--1bfa1{width:calc(41.625% - 17.5px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(12n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:32.5px 19.5px 0}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0:after{bottom:0;content:"";height:540px;position:absolute;right:-10px;top:30px;width:1px}}@media screen and (min-width:960px){.Sidebar-module--sidebar--1bfa1{width:calc(33.3% - 20px)}.Sidebar-module--sidebar--1bfa1:nth-child(1n){clear:none;float:left;margin-right:30px}.Sidebar-module--sidebar--1bfa1:last-child{margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n){float:right;margin-right:0}.Sidebar-module--sidebar--1bfa1:nth-child(3n+1){clear:both}.Sidebar-module--sidebar--1bfa1 .Sidebar-module--inner--344d0{padding:39px}}.Author-module--author--1c58d{border-top:1px solid var(--color-page-border);line-height:26px;margin-bottom:52px;margin-top:26px;max-width:640px;padding-top:26px}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647{display:block;text-decoration:underline}.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:focus,.Author-module--author--1c58d .Author-module--bio--08950 .Author-module--twitter--90647:hover{color:var(--color-typographic-link-s-font)}@media screen and (min-width:685px){.Author-module--author--1c58d{margin-left:auto;margin-right:auto}}.Content-module--content--80d58{margin:0 auto;max-width:945px;padding:0 13px}.Content-module--content--80d58 .Content-module--title--09504{font-size:32px;font-weight:600;line-height:42.9px;margin:26px auto 0;max-width:640px;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure{margin-bottom:26px}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote{font-style:italic;margin-top:0;padding:26px 0;text-align:center}.Content-module--content--80d58 .Content-module--body--726c2 figure blockquote p{font-size:26.9072px;line-height:39px;margin-bottom:26px;margin-top:0;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 a{text-decoration:underline}.Content-module--content--80d58 .Content-module--body--726c2 *{margin-left:auto;margin-right:auto;max-width:640px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{visibility:hidden}.Content-module--content--80d58 .Content-module--body--726c2 h2>a>svg{fill:var(--color-typographic-base-font)}.Content-module--content--80d58 .Content-module--body--726c2 img{max-width:100%}@media screen and (min-width:960px){.Content-module--content--80d58{padding:0}.Content-module--content--80d58 .Content-module--title--09504{font-size:48px;line-height:58.5px;margin-bottom:39px;margin-top:58.5px}.Content-module--content--80d58 .Content-module--body--726c2,.Content-module--content--80d58 .Content-module--body--726c2 p{font-size:18px;line-height:29.25px;margin-bottom:29.25px}.Content-module--content--80d58 .Content-module--body--726c2 h2>a{padding-right:13px;visibility:unset}}.Meta-module--meta--dae0a .Meta-module--date--4d30d{font-style:italic}.Tags-module--tags--18589{margin-bottom:13px}.Tags-module--tags--18589 .Tags-module--list--82ae6{list-style:none;padding:0}.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015{display:inline-block;margin:6.5px 0}@media screen and (min-width:685px){.Tags-module--tags--18589 .Tags-module--list--82ae6 .Tags-module--item--52015:first-child{margin-left:0;padding-left:0}}.Post-module--post--3a994 .Post-module--content--3c6e5{margin:0 auto}.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{margin:0 auto;max-width:640px;padding:0 13px}.Post-module--post--3a994 .Post-module--buttons--2972d{align-items:center;display:flex;justify-content:center;margin:26px 0 0;text-align:center}.Post-module--post--3a994 .Post-module--buttons--2972d .Post-module--buttonArticles--d793a{margin:0 13px 0 0}@media screen and (min-width:960px){.Post-module--post--3a994 .Post-module--comments--d3b99,.Post-module--post--3a994 .Post-module--footer--f8705{padding:0}.Post-module--post--3a994 .Post-module--buttons--2972d{left:30px;margin:0 13px 0 0;max-width:none;position:fixed;top:30px}}</style><title data-gatsby-head="true">Create a React application - Blog by Shelly Wu</title><link rel="alternate" type="application/rss+xml" title="Blog by Shelly Wu" href="/rss.xml"/><style type="text/css">
+    .anchor.before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translateX(-100%);
+      padding-right: 4px;
+    }
+    .anchor.after {
+      display: inline-block;
+      padding-left: 4px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
+          var clientTop = document.documentElement.clientTop || document.body.clientTop || 0
+          var offset = element.getBoundingClientRect().top + scrollTop - clientTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="preconnect" href="https://www.googletagmanager.com"/><link rel="dns-prefetch" href="https://www.googletagmanager.com"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-FKZP4NXYRH"></script><script>
+      
+      
+      if(true) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){window.dataLayer && window.dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-FKZP4NXYRH', {"send_page_view":false});
+      }
+      </script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/><link rel="icon" href="/favicon-32x32.png?v=7c5b6488cadf9657adae21d605ca9908" type="image/png"/><link rel="manifest" href="/manifest.webmanifest" crossorigin="anonymous"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=7c5b6488cadf9657adae21d605ca9908"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=7c5b6488cadf9657adae21d605ca9908"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script></head><body><script>
+          void function() {
+            var cachedMode;
+
+            try {
+              var preferredTheme = JSON.parse(localStorage.getItem('diesel:theme-atom'));
+
+              if (preferredTheme && preferredTheme.mode) {
+                cachedMode = preferredTheme.mode;
+              }
+            } catch (err) { }
+
+            function setTheme(newTheme) {
+              document.documentElement.className = newTheme;
+            }
+
+            var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+            setTheme(cachedMode || (darkQuery.matches ? 'dark' : 'light'));
+          }()
+        </script><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="Layout-module--layout--2c933"><div class="Post-module--post--3a994"><div class="Post-module--buttons--2972d"><a class="Button-module--button--b1113 Post-module--buttonArticles--d793a" href="/">All Articles</a></div><div class="Post-module--content--3c6e5"><div class="Content-module--content--80d58"><h1 class="Content-module--title--09504">Create a React application</h1><div class="Content-module--body--726c2"><h2 id="devops-監控" style="position:relative;"><a href="#devops-%E7%9B%A3%E6%8E%A7" aria-label="devops 監控 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Devops 監控</h2>
+<p>特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。</p>
+<h2 id="工具簡介" style="position:relative;"><a href="#%E5%B7%A5%E5%85%B7%E7%B0%A1%E4%BB%8B" aria-label="工具簡介 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>工具簡介</h2>
+<ol>
+<li>AWS CloudWatch
+目的：監控和管理 AWS 資源和應用程式。
+主要特點：</li>
+</ol>
+<ul>
+<li>提供 AWS 服務的即時監控。</li>
+<li>允許根據指標閾值設定警報並自動響應。</li>
+<li>與其他 AWS 服務無縫整合。</li>
+</ul>
+<ol start="2">
+<li>Prometheus
+用途：開源系統監控和警報工具包。
+主要特點：</li>
+</ol>
+<ul>
+<li>高效率收集和儲存時間序列資料。</li>
+<li>提供用於分析指標的強大查詢語言 (PromQL)。</li>
+<li>非常適合監控雲端原生應用程式，尤其是使用微服務的應用程式。</li>
+</ul>
+<ol start="3">
+<li>Alert Managing
+用途：處理 Prometheus 發送的警報並管理通知。
+主要特點：</li>
+</ol>
+<ul>
+<li>根據定義的規則將警報路由到正確的接收者。</li>
+<li>與電子郵件、Slack 和 PagerDuty 等各種通知平台整合。</li>
+</ul>
+<ol start="4">
+<li>Grafana
+目的：一個用於監控和可觀察性的開源平台。
+主要特點：</li>
+</ol>
+<ul>
+<li>允許建立可自訂的互動式儀表板。</li>
+<li>支援廣泛的資料來源，包括 Prometheus、Elasticsearch 等。</li>
+<li>提供警報功能，能夠在儀表板上可視化警報。</li>
+</ul>
+<ol start="5">
+<li>Elasticsearch
+用途：處理搜尋的引擎，不僅是一個強大的搜尋引擎，也是一個分散式資料庫
+Elastic Stack ⇒ Elasticsearch、Kibana、Logstash、Beats</li>
+</ol>
+<ul>
+<li>
+<p><strong>Kibana</strong> 當作 Elasticsearch 的 Dashboard(視覺化的圖表)</p>
+</li>
+<li>
+<p><strong>Logstash</strong> 處理應用程式的 Log 並把它送到 Elasticsearch，Logstash 本身把接受到的資料視作   事件，Logstash 處理後並送到一個或多個地方。
+像是 Elasticsearch, Kafka, HTTP Endpoint 都可以作為目的地發送。</p>
+</li>
+<li>
+<p><strong>Beats Logstash 的前一個關卡，負責搜集資料</strong>
+Beat 有各種不同的款式，像是 Filebeat 就是專門搜集 Web server log, database log 等等，也有像是 Metricbeat 專門來搜集系統的 CPU 以及記憶體用量</p>
+<p>6.kibana
+用途： Elasticsearch 的可視化和資料探索工具。
+主要特點：</p>
+</li>
+<li>
+<p>專注於日誌和時間序列分析。</p>
+</li>
+<li>
+<p>使用戶能夠為 Elasticsearch 資料建立視覺化和儀表板。</p>
+</li>
+<li>
+<p>包括搜尋、查看 Elasticsearch 中儲存的資料以及與之互動的功能。</p>
+<p>7.Telegraf</p>
+</li>
+<li>
+<p>資料收集器</p>
+</li>
+<li>
+<p>InfluxDB 即時分析而構建一個高速讀寫資料庫</p>
+</li>
+</ul>
+<h3 id="telegraf--influxdb" style="position:relative;"><a href="#telegraf--influxdb" aria-label="telegraf  influxdb permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Telegraf + InfluxDB</h3>
+<p>Telegraf 就像 Node Exporter 一樣，是一套裝在每臺機器上、定時監控所有機器的 agent</p>
+<ul>
+<li>Telegraf 設計上會主動把資料給 Database</li>
+<li>Telegraf 本身具備眾多 plug-in，只要在設定裡啟動就可以了</li>
+<li>Telegraf 可以設定你要讀取怎樣的數據</li>
+<li>可以用 Telegraf 去讀其他數據，再傳給 Database</li>
+<li>可以在 Telegraf 內處理數據後傳給 Database</li>
+<li>可以整合與運算(如極值、均值…等等)後再傳給 Database</li>
+</ul>
+<h3 id="prometheus" style="position:relative;"><a href="#prometheus" aria-label="prometheus permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prometheus</h3>
+<p>Prometheus 提供的是一整套監控系統, 包括資料的收集、<strong>資料儲存</strong>、報警, 甚至是繪圖(只不過很陽春,官方推薦使用 grafana) 。但 Prometheus 也需要 Node_exporter，通過 HTTP 定期從這些目標中以基於文本的格式 Pull 指標，並將收集到的資料儲存在本地 time series db 中。</p>
+<h3 id="prometheus-和-influxdb-比較" style="position:relative;"><a href="#prometheus-%E5%92%8C-influxdb-%E6%AF%94%E8%BC%83" aria-label="prometheus 和 influxdb 比較 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prometheus 和 InfluxDB 比較</h3>
+<p>InfluxDB 只是一個 time series db, 使用它做監控系統的話, 還需要物色資料獲取器,如 telegraf, collectd 等. 甚至連報警模組, 也需要使用同為 Influxdata 公司出的 Kapacitor。</p>
+<p>Prometheus 和 InfluxDB 在資料的採集上兩者就選擇了不同的極端, 前者只能 pull, 後者只能 push, 關於 pull 和 push 的對比。(Prometheus 也可以經由 PushGateway 來採集 Push mode 的資料)。</p>
+<p>Prometheus 把資料的採集器叫做 exporter, xxx-exporter 運行之後會在機器上佔用一個 port, 等待 Prometheus server 來拉取資料。</p>
+<p>InfluxDB 的資料搜集器使用了 telegraf, 官方宣傳外掛程式化驅動, 編譯的時候把很多東西的採集功能包進去壓在一個二進位裡面, 再用設定檔控制外掛程式是否開啟. 功能其實是蠻強大了. 也是 Go 編寫。</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/e1722cc994b2de2dc524114932db7274/36eca/dev1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 39.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABK0lEQVQoz21Si27DIAzs//9hMy1dm2ohJIRXaEPS5qZzS7RJQwLjw5zPmAMAzPMMMwyIIdDF4/FACB7jaHC/33fMOSf+tm14Pp8yvSd2kxjiBy59r2HtKAEc67piNEZwrTW895L0fP5C01zQdR1CCJLkem2g2hbOWuQ840ACEpG4jP/2RRVtwUhQVUd8VEco1YpSUbgsWUqhslJezhl5nkUZ9ySjXZZFMMaSkOpiDDJ3QpbUa72/F4O9c7DWwphBzpmElqUaY/ZnqN7qpmlCjPFFyCBeZpZCyEPizllMU3w3KgjOWZp5qmsopUQAGySEKSXpKm0pOaXpnTXgdkuC0Wccfd5jyc3lgrr+lF/CJxHCYRhENjtVFL7KNXJGZcTa9hunU/3nm/xuEscPtz9q//BUcbQAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/e1722cc994b2de2dc524114932db7274/8ac56/dev1.webp 240w,
+/static/e1722cc994b2de2dc524114932db7274/d3be9/dev1.webp 480w,
+/static/e1722cc994b2de2dc524114932db7274/e46b2/dev1.webp 960w,
+/static/e1722cc994b2de2dc524114932db7274/f992d/dev1.webp 1440w,
+/static/e1722cc994b2de2dc524114932db7274/d3be1/dev1.webp 1526w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/e1722cc994b2de2dc524114932db7274/8ff5a/dev1.png 240w,
+/static/e1722cc994b2de2dc524114932db7274/e85cb/dev1.png 480w,
+/static/e1722cc994b2de2dc524114932db7274/d9199/dev1.png 960w,
+/static/e1722cc994b2de2dc524114932db7274/07a9c/dev1.png 1440w,
+/static/e1722cc994b2de2dc524114932db7274/36eca/dev1.png 1526w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/e1722cc994b2de2dc524114932db7274/d9199/dev1.png"
+            alt="dev1"
+            title="dev1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a246e48d9c9710c8fd08f00b5901ce12/acf8f/dev2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 51.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACK0lEQVQozy2Sy27aUBRF+Yn+Xj+k6rRSv6CDTDpr1EHVh5JJ1VZJSdKGJsGQQIDYgWDwAxvjB35c+16vCpMjndGVlu5Ze7d8UfBmqXMWeET+BttdYVk2y6WF63rE0QovA82BL2OFk0hAUpUVSimklNR1TVEITNOk9S1waf085OVDFyqJ1utxcnrK43RKLiS134FIAwRWAu+u4W5NM5WqkbJCNcBiD4xKwYHzxDBLqLKM6WzGeDJG13XyPKcGknCBt7yBdIKVZHTbGnz/gBRF88taKYR4BqLU7gIoJWEYNRvFCcEmZBMEeL6FsYGOBV+HGZqTwvAv+ef3iCyjUFDWkOYF87lJa5pVvH5wOHJisjhBNx65vR2wWFhswhjh9yHsQPaAu15x9RRS2CalZSLmBsIYUU3HxMsFs/mClplXvNVtfocZShT0+j3a7Taj8ZhCiMaVGVb8mmz41F/zx/AoA4fUdcntBfnKQVgmsevwtAPuJOV7x6TbLZ7n4/k+juOSpdsmiL5Hk3QpYmQyg8bsfna2FFCU1d5hmQfkowNSp8vKj7HtfWV2azkeQWBDqlOvrzGHP1j7K8IoxrKWeN5qXxsln1Ne0BLWCf7hC6J/rxq5o/shl5edpotlVaNiAxVPEHlE56rL+cUFZ+fnHB8fYRgGUqkm6R1wPp/TkmLLVv9IFRkk25z7+yGapjEYDEiSpDlO1vsjq1I079c3N9wN7lCqbmCqqY3Ath3+A8+y6IB0jZ4pAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a246e48d9c9710c8fd08f00b5901ce12/8ac56/dev2.webp 240w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/d3be9/dev2.webp 480w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/e46b2/dev2.webp 960w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/89344/dev2.webp 1340w"
+              sizes="(max-width: 960px) 100vw, 960px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a246e48d9c9710c8fd08f00b5901ce12/8ff5a/dev2.png 240w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/e85cb/dev2.png 480w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/d9199/dev2.png 960w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/acf8f/dev2.png 1340w"
+            sizes="(max-width: 960px) 100vw, 960px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a246e48d9c9710c8fd08f00b5901ce12/d9199/dev2.png"
+            alt="dev2"
+            title="dev2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h3 id="prometheus-與-telegraf有什麼區別" style="position:relative;"><a href="#prometheus-%E8%88%87-telegraf%E6%9C%89%E4%BB%80%E9%BA%BC%E5%8D%80%E5%88%A5" aria-label="prometheus 與 telegraf有什麼區別 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prometheus 與 Telegraf：有什麼區別？</h3>
+<p>Telegraf
+Telegraf 的架構是基於插件(像是 node exporter)，可以靈活地從各種來源收集資料、進行處理並將其輸出到不同的目的地。
+Prometheus
+是一個開源監控和警報工具包, 注重可靠性和可擴展性，尤其是在動態雲端環境</p>
+<p>Prometheus 和 Telegraf 都是監控和指標收集領域廣泛使用的工具。雖然它們的用途相似，但它們之間存在關鍵的差異，使得每個工具都獨一無二且適合特定的用例。</p>
+<ul>
+<li>
+<p>資料收集：Prometheus 是一個基於拉取的系統，它透過從目標拉取指標來收集資料。另一方面，Telegraf 是一個多功能代理，支援拉取和推送機制。它可以透過從各種來源提取指標以及將指標推送到不同目的地來收集數據。</p>
+</li>
+<li>
+<p>可擴展性：Prometheus 設計為高度可擴展，可處理大量資料。它透過聯合架構實現可擴展性，其中多個 Prometheus 伺服器可以聯合在一起。另一方面，Telegraf 是一個輕量級收集器，可以部署在大量機器上，因此也具有高度的可擴展性。</p>
+</li>
+<li>
+<p>資料處理：Prometheus 自帶查詢語言 PromQL，允許對指標進行高階查詢和處理。使用 PromQL，使用者可以對收集的資料執行聚合、篩選和數學運算。另一方面，Telegraf 更注重資料收集和路由，將資料處理任務留給堆疊中的其他工具。</p>
+</li>
+<li>
+<p>插件生態系統：Telegraf 擁有豐富的插件生態系統，可輕鬆與各種系統和技術整合。它支援廣泛的輸入和輸出插件，使其靈活且易於擴展。而 Prometheus 則更注重核心的監控和警報功能，官方插件數量有限。</p>
+</li>
+<li>
+<p>警報：Prometheus 具有內建警報系統，可讓使用者根據收集到的指標定義警報規則。它支援各種通知管道，例如電子郵件、Slack 和 PagerDuty，以便在滿足特定條件時發送警報。另一方面，Telegraf 沒有內建警報系統，而是依賴監控堆疊中的其他工具來實現警報功能。</p>
+</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 845px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 109.16666666666669%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC1UlEQVQ4y62UC6vaQBCF8///VSkUWijlvrwajUZjEmPeb416p3yzxmtLC6VtYNjd7OvMOWfWiqJYPnz8JJ+/fJX1xhO+y+Uib29vfxXWMAySpJns94mUZSXn81n+5bO6rhN77sjT00Tb3S7SQ4fhJKfTj8Hlg7bX8V2fPbRWWVXirjcSRXtJs1zSNJM4TmQfG8RZXuhcHKey09bM5UUhcZJqP0lSqetG56y27RTVfh9L27Z60/F4lL7v5XA4yOF41PGIgj57CLJjD/2maXW9VTeNrNy18lhVtYS7SBxnpekTM3uhFwbBToJwJwtnJc7S1WxABqo8N2jruhaLG7Nrqiyiz83wxdzhcHznbzDt+XL5vShABcXj00SeX17lZTKVrut/uRg7EefzRdMnzPj8LkpRlCqKt/XF87baTmdzPdhZmvSgZDq1lY5oH6sQiIBoZFPVtY7DcCcWKUEs/IGWBU3T6AL+ETgBkYydhisdpmX/+A+0Fuktl64i8f1QPM+X9dqT+WIptr2QyetMXqe2zGZz2fqBIsQ+WAmkYWgcggaAsLgV6KiEavdIuPHe1H9UKaQ0mczk4fFZHh6e9SZqciSaGOv09FMFkTZOMOobn1oQut5s9SD8hOfctScbb6uBEH4QynzuKDWkiCehhLTZQxRlqfxbpAgnWZ6rAKiuC4pSPUloWabZjRpeKC4GjPryahn6ahvssXI9dT0IqJTtNpCVu1E0CMUYpGoxz9eqwWLsDYJQlivX2KbtOjkNJ+na4sYHNWn678Jgj7Fqxn9jbd9XlMXm6XQu3+wX+R+fPl9URp6X6qORu+j6VI3mJniE4RJ74T3WwitnwCdrtFKYYMBCBGET3I3j8bGgouh3fX/7Nwbp9zxfqAya5Kri+MCivFrGD2+12uiBvV6SXJGm+uxVul5LjwM5QFWj7DaetjwIqMyThlCGfIOm7w96MEjZPz66HPgdKLiUS5Pv9nYAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/64751f1e162b868246b2233eb0835bd4/8ac56/dev3.webp 240w,
+/static/64751f1e162b868246b2233eb0835bd4/d3be9/dev3.webp 480w,
+/static/64751f1e162b868246b2233eb0835bd4/c4f2e/dev3.webp 845w"
+              sizes="(max-width: 845px) 100vw, 845px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/64751f1e162b868246b2233eb0835bd4/8ff5a/dev3.png 240w,
+/static/64751f1e162b868246b2233eb0835bd4/e85cb/dev3.png 480w,
+/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png 845w"
+            sizes="(max-width: 845px) 100vw, 845px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png"
+            alt="dev3"
+            title="dev3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<h2 id="參考資料" style="position:relative;"><a href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99" aria-label="參考資料 permalink" class="anchor before"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>參考資料</h2>
+<p><a href="https://blog.nashtechglobal.com/telegraf-vs-prometheus-choosing-the-right-metrics-collection-tool/" target="_blank" rel="nofollow noopener noreferrer">https://blog.nashtechglobal.com/telegraf-vs-prometheus-choosing-the-right-metrics-collection-tool/</a></p></div></div></div><div class="Post-module--footer--f8705"><div class="Meta-module--meta--dae0a"><p class="Meta-module--date--4d30d">Published<!-- --> <!-- -->Feb 9, 2025</p></div><div class="Tags-module--tags--18589"><ul class="Tags-module--list--82ae6"><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/devops/">Devops</a></li><li class="Tags-module--item--52015"><a class="Button-module--button--b1113" href="/tag/monitoring/">Monitoring</a></li></ul></div><div class="Author-module--author--1c58d"><p class="Author-module--bio--08950">喜歡徜徉在程式與思考中，享受這樣的寧靜。工作期間的每一次分享知識，讓自己對知識點更加深入。在工作閒暇之餘積極參與研討會或是加入開發社群的與大家交流技術。<a class="Author-module--twitter--90647" href="https://www.twitter.com/#" rel="noopener noreferrer" target="_blank"><strong>Shelly Wu</strong> on Twitter</a></p></div></div><div class="Post-module--comments--d3b99"></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/posts/2025-02-09---Monitoring";window.___webpackCompilationHash="b394218530433d6431f8";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-ee6a8f41162eeea39323.js"],"app":["/app-22979314e209e800f97e.js"],"component---cache-caches-gatsby-plugin-offline-app-shell-js":["/component---cache-caches-gatsby-plugin-offline-app-shell-js-100c9cc6969fe39ed513.js"],"component---src-templates-categories-template-categories-template-tsx":["/component---src-templates-categories-template-categories-template-tsx-822621f50a1469c88a84.js"],"component---src-templates-category-template-category-template-tsx":["/component---src-templates-category-template-category-template-tsx-8253bcdb68fa06864d41.js"],"component---src-templates-index-template-index-template-tsx":["/component---src-templates-index-template-index-template-tsx-1c4cb9c08f72c8193773.js"],"component---src-templates-not-found-template-not-found-template-tsx":["/component---src-templates-not-found-template-not-found-template-tsx-9283e4509203f3a8a8e0.js"],"component---src-templates-page-template-page-template-tsx":["/component---src-templates-page-template-page-template-tsx-7e15399e26da86fcb38e.js"],"component---src-templates-post-template-post-template-tsx":["/component---src-templates-post-template-post-template-tsx-bcaf8627c0ccf04eebae.js"],"component---src-templates-tag-template-tag-template-tsx":["/component---src-templates-tag-template-tag-template-tsx-bd32ed32480a528308ad.js"],"component---src-templates-tags-template-tags-template-tsx":["/component---src-templates-tags-template-tags-template-tsx-be4fbda22e5556fb4eb0.js"]};/*]]>*/</script><script src="/polyfill-ee6a8f41162eeea39323.js" nomodule=""></script><script src="/app-22979314e209e800f97e.js" async=""></script><script src="/b3a13d7d-18c8c5498ba8a0981777.js" async=""></script><script src="/framework-de9d6b93c2fe39840233.js" async=""></script><script src="/webpack-runtime-34a7fecb394e65de7bae.js" async=""></script></body></html>

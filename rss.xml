@@ -1,4 +1,256 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Shelly Wu]]></title><description><![CDATA[Blog by Shelly Wu]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 02 Jan 2025 10:51:05 GMT</lastBuildDate><item><title><![CDATA[Create a React application]]></title><description><![CDATA[建立React Application透過webpack, vite 或是CRA的方式]]></description><link>https://lumen.alxshelepenok.com/posts/2023-08-31---React-Template</link><guid isPermaLink="false">https://lumen.alxshelepenok.com/posts/2023-08-31---React-Template</guid><pubDate>Thu, 31 Aug 2023 02:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Blog by Shelly Wu]]></title><description><![CDATA[Blog by Shelly Wu]]></description><link>http://github.com/dylang/node-rss</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 09 Feb 2025 08:39:03 GMT</lastBuildDate><item><title><![CDATA[Create a React application]]></title><description><![CDATA[特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。]]></description><link>https://lumen.alxshelepenok.com/posts/2025-02-09---Monitoring</link><guid isPermaLink="false">https://lumen.alxshelepenok.com/posts/2025-02-09---Monitoring</guid><pubDate>Sun, 09 Feb 2025 02:40:32 GMT</pubDate><content:encoded>&lt;h2 id=&quot;devops-監控&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#devops-%E7%9B%A3%E6%8E%A7&quot; aria-label=&quot;devops 監控 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Devops 監控&lt;/h2&gt;
+&lt;p&gt;特定軟體版本找出問題並收集相關資訊。工具包括 New Relic、Datadog、Grafana、Wireshark、Splunk、Nagios 或 Slack。&lt;/p&gt;
+&lt;h2 id=&quot;工具簡介&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%B7%A5%E5%85%B7%E7%B0%A1%E4%BB%8B&quot; aria-label=&quot;工具簡介 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;工具簡介&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;AWS CloudWatch
+目的：監控和管理 AWS 資源和應用程式。
+主要特點：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;提供 AWS 服務的即時監控。&lt;/li&gt;
+&lt;li&gt;允許根據指標閾值設定警報並自動響應。&lt;/li&gt;
+&lt;li&gt;與其他 AWS 服務無縫整合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Prometheus
+用途：開源系統監控和警報工具包。
+主要特點：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;高效率收集和儲存時間序列資料。&lt;/li&gt;
+&lt;li&gt;提供用於分析指標的強大查詢語言 (PromQL)。&lt;/li&gt;
+&lt;li&gt;非常適合監控雲端原生應用程式，尤其是使用微服務的應用程式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;Alert Managing
+用途：處理 Prometheus 發送的警報並管理通知。
+主要特點：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;根據定義的規則將警報路由到正確的接收者。&lt;/li&gt;
+&lt;li&gt;與電子郵件、Slack 和 PagerDuty 等各種通知平台整合。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;Grafana
+目的：一個用於監控和可觀察性的開源平台。
+主要特點：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;允許建立可自訂的互動式儀表板。&lt;/li&gt;
+&lt;li&gt;支援廣泛的資料來源，包括 Prometheus、Elasticsearch 等。&lt;/li&gt;
+&lt;li&gt;提供警報功能，能夠在儀表板上可視化警報。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;Elasticsearch
+用途：處理搜尋的引擎，不僅是一個強大的搜尋引擎，也是一個分散式資料庫
+Elastic Stack ⇒ Elasticsearch、Kibana、Logstash、Beats&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kibana&lt;/strong&gt; 當作 Elasticsearch 的 Dashboard(視覺化的圖表)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Logstash&lt;/strong&gt; 處理應用程式的 Log 並把它送到 Elasticsearch，Logstash 本身把接受到的資料視作   事件，Logstash 處理後並送到一個或多個地方。
+像是 Elasticsearch, Kafka, HTTP Endpoint 都可以作為目的地發送。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Beats Logstash 的前一個關卡，負責搜集資料&lt;/strong&gt;
+Beat 有各種不同的款式，像是 Filebeat 就是專門搜集 Web server log, database log 等等，也有像是 Metricbeat 專門來搜集系統的 CPU 以及記憶體用量&lt;/p&gt;
+&lt;p&gt;6.kibana
+用途： Elasticsearch 的可視化和資料探索工具。
+主要特點：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;專注於日誌和時間序列分析。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用戶能夠為 Elasticsearch 資料建立視覺化和儀表板。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;包括搜尋、查看 Elasticsearch 中儲存的資料以及與之互動的功能。&lt;/p&gt;
+&lt;p&gt;7.Telegraf&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;資料收集器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;InfluxDB 即時分析而構建一個高速讀寫資料庫&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;telegraf--influxdb&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#telegraf--influxdb&quot; aria-label=&quot;telegraf  influxdb permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Telegraf + InfluxDB&lt;/h3&gt;
+&lt;p&gt;Telegraf 就像 Node Exporter 一樣，是一套裝在每臺機器上、定時監控所有機器的 agent&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Telegraf 設計上會主動把資料給 Database&lt;/li&gt;
+&lt;li&gt;Telegraf 本身具備眾多 plug-in，只要在設定裡啟動就可以了&lt;/li&gt;
+&lt;li&gt;Telegraf 可以設定你要讀取怎樣的數據&lt;/li&gt;
+&lt;li&gt;可以用 Telegraf 去讀其他數據，再傳給 Database&lt;/li&gt;
+&lt;li&gt;可以在 Telegraf 內處理數據後傳給 Database&lt;/li&gt;
+&lt;li&gt;可以整合與運算(如極值、均值…等等)後再傳給 Database&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;prometheus&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus&quot; aria-label=&quot;prometheus permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus&lt;/h3&gt;
+&lt;p&gt;Prometheus 提供的是一整套監控系統, 包括資料的收集、&lt;strong&gt;資料儲存&lt;/strong&gt;、報警, 甚至是繪圖(只不過很陽春,官方推薦使用 grafana) 。但 Prometheus 也需要 Node_exporter，通過 HTTP 定期從這些目標中以基於文本的格式 Pull 指標，並將收集到的資料儲存在本地 time series db 中。&lt;/p&gt;
+&lt;h3 id=&quot;prometheus-和-influxdb-比較&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%E5%92%8C-influxdb-%E6%AF%94%E8%BC%83&quot; aria-label=&quot;prometheus 和 influxdb 比較 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 和 InfluxDB 比較&lt;/h3&gt;
+&lt;p&gt;InfluxDB 只是一個 time series db, 使用它做監控系統的話, 還需要物色資料獲取器,如 telegraf, collectd 等. 甚至連報警模組, 也需要使用同為 Influxdata 公司出的 Kapacitor。&lt;/p&gt;
+&lt;p&gt;Prometheus 和 InfluxDB 在資料的採集上兩者就選擇了不同的極端, 前者只能 pull, 後者只能 push, 關於 pull 和 push 的對比。(Prometheus 也可以經由 PushGateway 來採集 Push mode 的資料)。&lt;/p&gt;
+&lt;p&gt;Prometheus 把資料的採集器叫做 exporter, xxx-exporter 運行之後會在機器上佔用一個 port, 等待 Prometheus server 來拉取資料。&lt;/p&gt;
+&lt;p&gt;InfluxDB 的資料搜集器使用了 telegraf, 官方宣傳外掛程式化驅動, 編譯的時候把很多東西的採集功能包進去壓在一個二進位裡面, 再用設定檔控制外掛程式是否開啟. 功能其實是蠻強大了. 也是 Go 編寫。&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/e1722cc994b2de2dc524114932db7274/36eca/dev1.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 39.583333333333336%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABYlAAAWJQFJUiTwAAABK0lEQVQoz21Si27DIAzs//9hMy1dm2ohJIRXaEPS5qZzS7RJQwLjw5zPmAMAzPMMMwyIIdDF4/FACB7jaHC/33fMOSf+tm14Pp8yvSd2kxjiBy59r2HtKAEc67piNEZwrTW895L0fP5C01zQdR1CCJLkem2g2hbOWuQ840ACEpG4jP/2RRVtwUhQVUd8VEco1YpSUbgsWUqhslJezhl5nkUZ9ySjXZZFMMaSkOpiDDJ3QpbUa72/F4O9c7DWwphBzpmElqUaY/ZnqN7qpmlCjPFFyCBeZpZCyEPizllMU3w3KgjOWZp5qmsopUQAGySEKSXpKm0pOaXpnTXgdkuC0Wccfd5jyc3lgrr+lF/CJxHCYRhENjtVFL7KNXJGZcTa9hunU/3nm/xuEscPtz9q//BUcbQAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/e1722cc994b2de2dc524114932db7274/8ac56/dev1.webp 240w,
+/static/e1722cc994b2de2dc524114932db7274/d3be9/dev1.webp 480w,
+/static/e1722cc994b2de2dc524114932db7274/e46b2/dev1.webp 960w,
+/static/e1722cc994b2de2dc524114932db7274/f992d/dev1.webp 1440w,
+/static/e1722cc994b2de2dc524114932db7274/d3be1/dev1.webp 1526w&quot;
+              sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/e1722cc994b2de2dc524114932db7274/8ff5a/dev1.png 240w,
+/static/e1722cc994b2de2dc524114932db7274/e85cb/dev1.png 480w,
+/static/e1722cc994b2de2dc524114932db7274/d9199/dev1.png 960w,
+/static/e1722cc994b2de2dc524114932db7274/07a9c/dev1.png 1440w,
+/static/e1722cc994b2de2dc524114932db7274/36eca/dev1.png 1526w&quot;
+            sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/e1722cc994b2de2dc524114932db7274/d9199/dev1.png&quot;
+            alt=&quot;dev1&quot;
+            title=&quot;dev1&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 960px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/a246e48d9c9710c8fd08f00b5901ce12/acf8f/dev2.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 51.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAABYlAAAWJQFJUiTwAAACK0lEQVQozy2Sy27aUBRF+Yn+Xj+k6rRSv6CDTDpr1EHVh5JJ1VZJSdKGJsGQQIDYgWDwAxvjB35c+16vCpMjndGVlu5Ze7d8UfBmqXMWeET+BttdYVk2y6WF63rE0QovA82BL2OFk0hAUpUVSimklNR1TVEITNOk9S1waf085OVDFyqJ1utxcnrK43RKLiS134FIAwRWAu+u4W5NM5WqkbJCNcBiD4xKwYHzxDBLqLKM6WzGeDJG13XyPKcGknCBt7yBdIKVZHTbGnz/gBRF88taKYR4BqLU7gIoJWEYNRvFCcEmZBMEeL6FsYGOBV+HGZqTwvAv+ef3iCyjUFDWkOYF87lJa5pVvH5wOHJisjhBNx65vR2wWFhswhjh9yHsQPaAu15x9RRS2CalZSLmBsIYUU3HxMsFs/mClplXvNVtfocZShT0+j3a7Taj8ZhCiMaVGVb8mmz41F/zx/AoA4fUdcntBfnKQVgmsevwtAPuJOV7x6TbLZ7n4/k+juOSpdsmiL5Hk3QpYmQyg8bsfna2FFCU1d5hmQfkowNSp8vKj7HtfWV2azkeQWBDqlOvrzGHP1j7K8IoxrKWeN5qXxsln1Ne0BLWCf7hC6J/rxq5o/shl5edpotlVaNiAxVPEHlE56rL+cUFZ+fnHB8fYRgGUqkm6R1wPp/TkmLLVv9IFRkk25z7+yGapjEYDEiSpDlO1vsjq1I079c3N9wN7lCqbmCqqY3Ath3+A8+y6IB0jZ4pAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/a246e48d9c9710c8fd08f00b5901ce12/8ac56/dev2.webp 240w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/d3be9/dev2.webp 480w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/e46b2/dev2.webp 960w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/89344/dev2.webp 1340w&quot;
+              sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/a246e48d9c9710c8fd08f00b5901ce12/8ff5a/dev2.png 240w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/e85cb/dev2.png 480w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/d9199/dev2.png 960w,
+/static/a246e48d9c9710c8fd08f00b5901ce12/acf8f/dev2.png 1340w&quot;
+            sizes=&quot;(max-width: 960px) 100vw, 960px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/a246e48d9c9710c8fd08f00b5901ce12/d9199/dev2.png&quot;
+            alt=&quot;dev2&quot;
+            title=&quot;dev2&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h3 id=&quot;prometheus-與-telegraf有什麼區別&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#prometheus-%E8%88%87-telegraf%E6%9C%89%E4%BB%80%E9%BA%BC%E5%8D%80%E5%88%A5&quot; aria-label=&quot;prometheus 與 telegraf有什麼區別 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;Prometheus 與 Telegraf：有什麼區別？&lt;/h3&gt;
+&lt;p&gt;Telegraf
+Telegraf 的架構是基於插件(像是 node exporter)，可以靈活地從各種來源收集資料、進行處理並將其輸出到不同的目的地。
+Prometheus
+是一個開源監控和警報工具包, 注重可靠性和可擴展性，尤其是在動態雲端環境&lt;/p&gt;
+&lt;p&gt;Prometheus 和 Telegraf 都是監控和指標收集領域廣泛使用的工具。雖然它們的用途相似，但它們之間存在關鍵的差異，使得每個工具都獨一無二且適合特定的用例。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;資料收集：Prometheus 是一個基於拉取的系統，它透過從目標拉取指標來收集資料。另一方面，Telegraf 是一個多功能代理，支援拉取和推送機制。它可以透過從各種來源提取指標以及將指標推送到不同目的地來收集數據。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可擴展性：Prometheus 設計為高度可擴展，可處理大量資料。它透過聯合架構實現可擴展性，其中多個 Prometheus 伺服器可以聯合在一起。另一方面，Telegraf 是一個輕量級收集器，可以部署在大量機器上，因此也具有高度的可擴展性。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;資料處理：Prometheus 自帶查詢語言 PromQL，允許對指標進行高階查詢和處理。使用 PromQL，使用者可以對收集的資料執行聚合、篩選和數學運算。另一方面，Telegraf 更注重資料收集和路由，將資料處理任務留給堆疊中的其他工具。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;插件生態系統：Telegraf 擁有豐富的插件生態系統，可輕鬆與各種系統和技術整合。它支援廣泛的輸入和輸出插件，使其靈活且易於擴展。而 Prometheus 則更注重核心的監控和警報功能，官方插件數量有限。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;警報：Prometheus 具有內建警報系統，可讓使用者根據收集到的指標定義警報規則。它支援各種通知管道，例如電子郵件、Slack 和 PagerDuty，以便在滿足特定條件時發送警報。另一方面，Telegraf 沒有內建警報系統，而是依賴監控堆疊中的其他工具來實現警報功能。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 845px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 109.16666666666669%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAWCAYAAADAQbwGAAAACXBIWXMAAAsTAAALEwEAmpwYAAAC1UlEQVQ4y62UC6vaQBCF8///VSkUWijlvrwajUZjEmPeb416p3yzxmtLC6VtYNjd7OvMOWfWiqJYPnz8JJ+/fJX1xhO+y+Uib29vfxXWMAySpJns94mUZSXn81n+5bO6rhN77sjT00Tb3S7SQ4fhJKfTj8Hlg7bX8V2fPbRWWVXirjcSRXtJs1zSNJM4TmQfG8RZXuhcHKey09bM5UUhcZJqP0lSqetG56y27RTVfh9L27Z60/F4lL7v5XA4yOF41PGIgj57CLJjD/2maXW9VTeNrNy18lhVtYS7SBxnpekTM3uhFwbBToJwJwtnJc7S1WxABqo8N2jruhaLG7Nrqiyiz83wxdzhcHznbzDt+XL5vShABcXj00SeX17lZTKVrut/uRg7EefzRdMnzPj8LkpRlCqKt/XF87baTmdzPdhZmvSgZDq1lY5oH6sQiIBoZFPVtY7DcCcWKUEs/IGWBU3T6AL+ETgBkYydhisdpmX/+A+0Fuktl64i8f1QPM+X9dqT+WIptr2QyetMXqe2zGZz2fqBIsQ+WAmkYWgcggaAsLgV6KiEavdIuPHe1H9UKaQ0mczk4fFZHh6e9SZqciSaGOv09FMFkTZOMOobn1oQut5s9SD8hOfctScbb6uBEH4QynzuKDWkiCehhLTZQxRlqfxbpAgnWZ6rAKiuC4pSPUloWabZjRpeKC4GjPryahn6ahvssXI9dT0IqJTtNpCVu1E0CMUYpGoxz9eqwWLsDYJQlivX2KbtOjkNJ+na4sYHNWn678Jgj7Fqxn9jbd9XlMXm6XQu3+wX+R+fPl9URp6X6qORu+j6VI3mJniE4RJ74T3WwitnwCdrtFKYYMBCBGET3I3j8bGgouh3fX/7Nwbp9zxfqAya5Kri+MCivFrGD2+12uiBvV6SXJGm+uxVul5LjwM5QFWj7DaetjwIqMyThlCGfIOm7w96MEjZPz66HPgdKLiUS5Pv9nYAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;picture&gt;
+          &lt;source
+              srcset=&quot;/static/64751f1e162b868246b2233eb0835bd4/8ac56/dev3.webp 240w,
+/static/64751f1e162b868246b2233eb0835bd4/d3be9/dev3.webp 480w,
+/static/64751f1e162b868246b2233eb0835bd4/c4f2e/dev3.webp 845w&quot;
+              sizes=&quot;(max-width: 845px) 100vw, 845px&quot;
+              type=&quot;image/webp&quot;
+            /&gt;
+          &lt;source
+            srcset=&quot;/static/64751f1e162b868246b2233eb0835bd4/8ff5a/dev3.png 240w,
+/static/64751f1e162b868246b2233eb0835bd4/e85cb/dev3.png 480w,
+/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png 845w&quot;
+            sizes=&quot;(max-width: 845px) 100vw, 845px&quot;
+            type=&quot;image/png&quot;
+          /&gt;
+          &lt;img
+            class=&quot;gatsby-resp-image-image&quot;
+            src=&quot;/static/64751f1e162b868246b2233eb0835bd4/8bd7c/dev3.png&quot;
+            alt=&quot;dev3&quot;
+            title=&quot;dev3&quot;
+            loading=&quot;lazy&quot;
+            decoding=&quot;async&quot;
+            style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+          /&gt;
+        &lt;/picture&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;h2 id=&quot;參考資料&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot; aria-label=&quot;參考資料 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;參考資料&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.nashtechglobal.com/telegraf-vs-prometheus-choosing-the-right-metrics-collection-tool/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;https://blog.nashtechglobal.com/telegraf-vs-prometheus-choosing-the-right-metrics-collection-tool/&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create a React application]]></title><description><![CDATA[建立React Application透過webpack, vite 或是CRA的方式]]></description><link>https://lumen.alxshelepenok.com/posts/2023-08-31---React-Template</link><guid isPermaLink="false">https://lumen.alxshelepenok.com/posts/2023-08-31---React-Template</guid><pubDate>Thu, 31 Aug 2023 02:40:32 GMT</pubDate><content:encoded>&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&quot;#how-to-create-a-react-application-with-webpack&quot;&gt;How to create a React application with Webpack&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
